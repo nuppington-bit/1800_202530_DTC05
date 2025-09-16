@@ -59,11 +59,8 @@ elmo-hikes/
 
 
 ## Contributors
-<<<<<<< HEAD
-- Gurkaren - BCIT CST Student with a passion for outdoor adventures and Python. Fun fact: Loves playing video games.
-=======
 - **Voya Thomison** - BCIT CST Student with a passion for video games and user-friendly applications. Fun fact: Loves solving 5x5 Rubik's Cubes in waaaaay over a minute.
->>>>>>> main
+- Gurkaren - BCIT CST Student with a passion for outdoor adventures and Python. Fun fact: Loves playing video games.
 - **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
 
 ---
