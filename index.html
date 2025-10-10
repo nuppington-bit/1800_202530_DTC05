@@ -1,95 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>My BCIT Project</title>
-    <meta name="comp1800 template" content="My 1800 App" />
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <title>My BCIT Project</title>
+  <meta name="comp1800 template" content="My 1800 App" />
 
-    <!-- Other libraries go here -->
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-  </head>
+  <!-- Other libraries go here -->
 
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              fill="#B1B6A6"
-            >
-              <path
-                d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q97-30 162-118.5T718-480H480v-315l-240 90v207q0 7 2 18h238v316Z"
-              />
-            </svg>
-            WebSafe</a
-          >
-        </div>
-      </nav>
-    </header>
-    <main>
-      <div class="px-4 py-5 my-5 text-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="100px"
-          viewBox="0 -960 960 960"
-          width="100px"
-          fill="#B1B6A6"
-        >
-          <path
-            d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q97-30 162-118.5T718-480H480v-315l-240 90v207q0 7 2 18h238v316Z"
-          />
-        </svg>
-        <h1 class="display-5 fw-bold text-body-emphasis">WebSafe</h1>
-        <div class="col-lg-6 mx-auto">
-          <h3 class="lead mb-4 fs-4">
-            WebSafe is an educational app that helps users learn how to keep
-            themselves safe online. WebSafety provides tests and resources that
-            provide users with a better understanding of their online safety
-            habits and possible threats.
-          </h3>
-        </div>
+  <!-- Link to styles of your own -->
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#B1B6A6">
+            <path
+              d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q97-30 162-118.5T718-480H480v-315l-240 90v207q0 7 2 18h238v316Z" />
+          </svg>
+          WebSafe</a>
       </div>
-      <div class="mx-auto w-50">
-        <div class="dropdown center-button flex-1">
-          <button class="btn btn-secondary">Take Test</button>
-          <p>or</p>
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Set knowledge level
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Beginner </a></li>
-            <li><a class="dropdown-item" href="#">Intermediate</a></li>
-            <li><a class="dropdown-item" href="#">Advance</a></li>
-          </ul>
-        </div>
+    </nav>
+  </header>
+  <main>
+    <div class="px-4 py-5 my-5 text-center">
+      <svg xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 -960 960 960" width="100px" fill="#B1B6A6">
+        <path
+          d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q97-30 162-118.5T718-480H480v-315l-240 90v207q0 7 2 18h238v316Z" />
+      </svg>
+      <h1 class="display-5 fw-bold text-body-emphasis">WebSafe</h1>
+      <div class="col-lg-6 mx-auto">
+        <h3 class="lead mb-4 fs-4">
+          WebSafe is an educational app that helps users learn how to keep
+          themselves safe online. WebSafety provides tests and resources that
+          provide users with a better understanding of their online safety
+          habits and possible threats.
+        </h3>
       </div>
-    </main>
+    </div>
+    <div class="mx-auto w-50 d-flex align-items-center justify-content-center">
+      <div class="dropdown center-button d-inline-flex" style="width: fit-content;">
+        <button class="btn btn-secondary">Take Test</button>
+        <p class="px-2">or</p>
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Set knowledge level
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Beginner </a></li>
+          <li><a class="dropdown-item" href="#">Intermediate</a></li>
+          <li><a class="dropdown-item" href="#">Advance</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
 
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
+  <!---------------------------------------------->
+  <!-- Your own JavaScript functions go here    -->
+  <!---------------------------------------------->
 
-    <!-- Link to scripts of your own -->
-    <script type="module" src="./src/main.js"></script>
-  </body>
+  <!-- Link to scripts of your own -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+
 </html>
