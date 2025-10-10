@@ -1,35 +1,42 @@
 /* New Color Palette:
-* (Text):      #B1B6A6      (text, contrast with dark)
-* (Primary):   #711212      
-* (Secondary): #CA8787      (canvas background)
-* (Accent):    #240707
+* (Text):      #E8E9F0      (text, contrast with dark)
+* (Primary):   #493165      
+* (Secondary): #86C66F      (canvas background)
+* (Accent):    #86C66F
 */
 
 .navbar-light .navbar-brand,
 .navbar-light .navbar-nav .nav-link {
-  color: #b1b6a6; /* Dark green for brand name & nav links for visibility */
+  color: #E8E9F0; /* Dark green for brand name & nav links for visibility */
 }
 
 .btn-info {
-  color: #b1b6a6; /* Lightest shade for text on info button for contrast */
-  background-color: #ca8787; /* Light green for button background */
-  border-color: #000000; /* Dark green for button border */
+  color: #E8E9F0 !important; /* Lightest shade for text on info button for contrast */
+  background-color: #86C66F !important; /* Light green for button background */
+  border: none !important;
+}
+
+.btn-info:hover {
+  color: #E8E9F0 !important; /* Lightest shade for text */
+  background-color: #6da15b !important; /* Dark green for primary button background */
 }
 
 .btn-main {
-  color: #b1b6a6; /* Lightest shade for text */
-  font-size: 150%;
-  background-color: #000000; /* Dark green for primary button background */
-  border-color: #240707; /* Reddish-brown for border to use as accent */
-  border-width: thick;
+  color: #E8E9F0 !important; /* Lightest shade for text */
+  background-color: #493165 !important; /* Dark green for primary button background */
+}
+
+.btn-main:hover {
+  color: #E8E9F0 !important; /* Lightest shade for text */
+  background-color: #36244b !important; /* Dark green for primary button background */
 }
 
 body {
-  background-color: #363946; /* Lightest shade for body background to follow the 60% rule */
+  background-color: #E8E9F0 !important; /* Lightest shade for body background to follow the 60% rule */
 }
 
 .navbar-light{
-    background-color: #363946;
+    background-color: #787B80;
     font-size: 2.25rem;
 }
 .center-button {
