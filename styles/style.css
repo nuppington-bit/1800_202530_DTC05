@@ -5,31 +5,40 @@
 * (Accent):    #240707
 */
 
-
-.navbar-light .navbar-brand, .navbar-light .navbar-nav .nav-link {
-    color: #B1B6A6;            /* Dark green for brand name & nav links for visibility */
+.navbar-light .navbar-brand,
+.navbar-light .navbar-nav .nav-link {
+  color: #b1b6a6; /* Dark green for brand name & nav links for visibility */
 }
 
 .btn-info {
-    color: #B1B6A6;            /* Lightest shade for text on info button for contrast */
-    background-color: #CA8787; /* Light green for button background */
-    border-color: #000000;     /* Dark green for button border */
+  color: #b1b6a6; /* Lightest shade for text on info button for contrast */
+  background-color: #ca8787; /* Light green for button background */
+  border-color: #000000; /* Dark green for button border */
 }
 
 .btn-primary {
-    color: #B1B6A6;            /* Lightest shade for text */
-    font-size: 150%;
-    background-color: #000000; /* Dark green for primary button background */
-    border-color: #240707;     /* Reddish-brown for border to use as accent */
-    border-width: thick;
+  color: #b1b6a6; /* Lightest shade for text */
+  font-size: 150%;
+  background-color: #000000; /* Dark green for primary button background */
+  border-color: #240707; /* Reddish-brown for border to use as accent */
+  border-width: thick;
 }
 
 body {
-    background-color: #363946; /* Lightest shade for body background to follow the 60% rule */
+  background-color: #363946; /* Lightest shade for body background to follow the 60% rule */
 }
 
-.navbar-light{
-    background-color: #363946;
-    font-family: 'Caveat', cursive; /*change the font name for what you have*/
-    font-size: 2.25rem;
+.navbar-light {
+  background-color: #363946;
+  font-family: "Caveat", cursive; /*change the font name for what you have*/
+  font-size: 2.25rem;
+}
+.center-button {
+  text-align: center;
+}
+.flex-1 {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
