@@ -12,13 +12,13 @@
 
 .btn-info {
   color: #E8E9F0 !important; /* Lightest shade for text on info button for contrast */
-  background-color: #86C66F !important; /* Light green for button background */
+  background-color: #728661 !important; /* Light green for button background */
   border: none !important;
 }
 
 .btn-info:hover {
   color: #E8E9F0 !important; /* Lightest shade for text */
-  background-color: #6da15b !important; /* Dark green for primary button background */
+  background-color: #667756 !important; /* Dark green for primary button background */
 }
 
 .btn-main {
@@ -36,7 +36,7 @@ body {
 }
 
 .navbar-light{
-    background-color: #787B80;
+    background-color: #6A6186;
     font-size: 2.25rem;
 }
 .center-button {
