@@ -49,6 +49,8 @@ body {
   align-items: center;
 }
 .art-card-wrapper{
+  display: flex;
+  flex-direction: column;
   max-width: 768px;
   padding: 24px;
   background-color: white;
@@ -58,6 +60,8 @@ body {
   box-shadow: 15px 20px 25px -5px rgb(0, 0, 0, 0.2);
 }
 .art-title-wrapper{
+  max-width: fit-content;
+  margin-right: auto;
   margin-bottom: 8px;
   font-size: 30px;
   line-height: 36px;
@@ -65,11 +69,14 @@ body {
   color: #B1b6a6;
 }
 .art-content-wrapper{
+  max-width: fit-content;
+  margin-right: auto;
   margin-bottom: 12px;
   font-weight: 400;
   color: #B1b6a6;
 }
 .read-more-btn-wrapper{
+  max-width: fit-content;
   display: inline-flex;
   align-items: center;
   padding-left: 12px;
