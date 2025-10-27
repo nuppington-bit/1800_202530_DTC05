@@ -14,6 +14,7 @@
   color: #E8E9F0 !important; /* Lightest shade for text on info button for contrast */
   background-color: #728661 !important; /* Light green for button background */
   border: none !important;
+  transition: background-color 0.5s ease;
 }
 
 .btn-info:hover {
