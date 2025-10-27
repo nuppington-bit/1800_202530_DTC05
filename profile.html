@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My BCIT Project</title>
+    <meta name="comp1800 template" content="My 1800 App" />
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Other libraries go here -->
+
+    <!-- Link to styles of your own -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <style>
+        #profileImage {
+            border-radius: 50%;
+            background: #6A6186;
+            color: #fff;
+            text-align: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 3em;
+            width: 3em;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#E8E9F0">
+                        <path
+                            d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q97-30 162-118.5T718-480H480v-315l-240 90v207q0 7 2 18h238v316Z" />
+                    </svg>
+                    WebSafe</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="card mx-auto mt-5" style="width: 75%;">
+            <div class="card-body">
+                <div class="d-flex flex-row">
+                    <div id="profileImage" class="me-3">U</div>
+                    <div>
+                        <h5 class="card-title">Username</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Beginner</h6>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button class="btn-main btn">Change skill level</button>
+                    <button class="btn-info btn">Change profile details</button>
+                </div>
+            </div>
+        </div>
+        <div class="card mx-auto mt-3" style="width: 75%;">
+            <div class="card-body">
+                <h5 class="card-title">Test history</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Average: XX%</h6>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">2025-10-26: XX%</li>
+                    <li class="list-group-item">2025-10-22: XX%</li>
+                    <li class="list-group-item">2025-06-02: XX%</li>
+                    <li class="list-group-item">2025-01-10: XX%</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <script type="module" src="./src/main.js"></script>
+</body>
+
+</html>
