@@ -24,7 +24,7 @@
 .btn-main {
   color: #E8E9F0 !important; /* Lightest shade for text */
   background-color: #493165 !important; /* Dark green for primary button background */
-  transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease !important;
 }
 
 .btn-main:hover {
