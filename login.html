@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My BCIT Project</title>
+    <meta name="comp1800 template" content="My 1800 App" />
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Other libraries go here -->
+
+    <!-- Link to styles of your own -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#E8E9F0">
+                        <path
+                            d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q97-30 162-118.5T718-480H480v-315l-240 90v207q0 7 2 18h238v316Z" />
+                    </svg>
+                    WebSafe</a>
+            </div>
+        </nav>
+        <div id="loginView">
+            <h3 class="mb-3 text-center">Login</h3>
+            <form id="loginForm" novalidate>
+                <div class="mb-3">
+                    <input type="email" id="loginEmail" class="form-control" placeholder="Email" required />
+                </div>
+                <div class="mb-3">
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Password" required />
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+            <small class="d-block mt-3 text-center">
+                Don't have an account?
+                <a href="#" id="toSignup">Sign up</a>
+            </small>
+        </div>
+        <div id="signupView" class="d-none">
+            <h3 class="mb-3 text-center">Sign Up</h3>
+            <form id="signupForm" novalidate>
+                <div class="mb-3">
+                    <input type="text" id="signupName" class="form-control" placeholder="First and Last Name"
+                        aria-label="Full name" required />
+                </div>
+                <div class="mb-3">
+                    <input type="email" id="signupEmail" class="form-control" placeholder="Email" required />
+                </div>
+                <div class="mb-3">
+                    <input type="password" id="signupPassword" class="form-control" placeholder="Password" required />
+                </div>
+                <button type="submit" class="btn btn-success w-100">Create Account</button>
+            </form>
+            <small class="d-block mt-3 text-center">
+                Already have an account?
+                <a href="#" id="toLogin">Login</a>
+            </small>
+        </div>
+    </header>
+    <main>
+    </main>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/firebaseConfig.js"></script>
+    <script type="module" src="/src/authentication.js"></script>
+    <script type="module" src="/src/loginSignup.js"></script>
+</body>
+
+</html>
