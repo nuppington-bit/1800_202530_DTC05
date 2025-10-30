@@ -25,7 +25,7 @@
 .btn-main {
   color: #E8E9F0 !important; /* Lightest shade for text */
   background-color: #493165 !important; /* Dark green for primary button background */
-  transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease !important;
 }
 
 .btn-main:hover {
@@ -49,46 +49,6 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-}
-.art-card-wrapper{
-  display: flex;
-  flex-direction: column;
-  max-width: 768px;
-  padding: 24px;
-  background-color: white;
-  border-width: 2px;
-  border-color: #4b5563;
-  border-radius: 12px;
-  box-shadow: 15px 20px 25px -5px rgb(0, 0, 0, 0.2);
-}
-.art-title-wrapper{
-  max-width: fit-content;
-  margin-right: auto;
-  margin-bottom: 8px;
-  font-size: 30px;
-  line-height: 36px;
-  font-weight: 700;
-  color: #B1b6a6;
-}
-.art-content-wrapper{
-  max-width: fit-content;
-  margin-right: auto;
-  margin-bottom: 12px;
-  font-weight: 400;
-  color: #B1b6a6;
-}
-.read-more-btn-wrapper{
-  max-width: fit-content;
-  display: inline-flex;
-  align-items: center;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 500;
-  border-radius: 8px;
 }
 
 .remove-underline{
