@@ -2,9 +2,6 @@ import { db } from "./firebaseConfig.js"
 import { doc, onSnapshot, getDoc } from "firebase/firestore";
 import { collection, getDocs, addDoc, serverTimestamp } from "firebase/firestore";
 
-
-
-
 async function displayArticleCardsDynamically(params) {
     let cardTemplate = document.getElementById("article_card_template");   
     const articlesCollectionRef = collection(db, "articles");
@@ -16,8 +13,6 @@ async function displayArticleCardsDynamically(params) {
             const article = doc.data();
             console.log(article);
             
-            
-
             newcard.querySelector("#article_name").textContent = article.article_name;
             newcard.querySelector("#summary_text").textContent = article.summary;
             newcard.querySelector("#article_link").href = article.link;

@@ -1,4 +1,5 @@
-import { auth } from "/src/firebaseConfig.js";
+import { auth, db } from "/src/firebaseConfig.js";
+import { doc, onSnapshot, getDoc, setDoc } from "firebase/firestore";
 
 import {
     signInWithEmailAndPassword,
@@ -14,7 +15,9 @@ export async function loginUser(email, password) {
 
 export async function signupUser(name, email, password) {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(userCredential.user, { displayName: name, knowledgeLevel: 0, testAverage: 0});
+    const userRef = doc(db, "users", userCredential.user.uid)
+    await updateProfile(userCredential.user);
+    await setDoc(userRef, {displayName: name, knowledgeLevel: 0, testAverage: 0})
     return userCredential.user;
 }
 
