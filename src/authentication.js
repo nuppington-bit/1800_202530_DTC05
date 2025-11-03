@@ -15,10 +15,10 @@ export async function loginUser(email, password) {
 
 export async function signupUser(name, email, password) {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const userRef = doc(db, "users", userCredential.user.uid)
-    await updateProfile(userCredential.user);
+    const user = userCredential.user;
+    const userRef = doc(db, "users", user.uid)
     await setDoc(userRef, {displayName: name, knowledgeLevel: 0, testAverage: 0})
-    return userCredential.user;
+    return user;
 }
 
 export async function logoutUser() {
