@@ -7,43 +7,55 @@
 
 .navbar-light .navbar-brand,
 .navbar-light .navbar-nav .nav-link {
-  color: #E8E9F0; /* Dark green for brand name & nav links for visibility */
+  color: #E8E9F0;
+  /* Dark green for brand name & nav links for visibility */
 }
 
 .btn-info {
-  color: #E8E9F0 !important; /* Lightest shade for text on info button for contrast */
-  background-color: #728661 !important; /* Light green for button background */
+  color: #E8E9F0 !important;
+  /* Lightest shade for text on info button for contrast */
+  background-color: #728661 !important;
+  /* Light green for button background */
   border: none !important;
   transition: background-color 0.5s ease;
 }
 
 .btn-info:hover {
-  color: #E8E9F0 !important; /* Lightest shade for text */
-  background-color: #667756 !important; /* Dark green for primary button background */
+  color: #E8E9F0 !important;
+  /* Lightest shade for text */
+  background-color: #667756 !important;
+  /* Dark green for primary button background */
 }
 
 .btn-main {
-  color: #E8E9F0 !important; /* Lightest shade for text */
-  background-color: #493165 !important; /* Dark green for primary button background */
+  color: #E8E9F0 !important;
+  /* Lightest shade for text */
+  background-color: #493165 !important;
+  /* Dark green for primary button background */
   transition: background-color 0.5s ease !important;
 }
 
 .btn-main:hover {
-  color: #E8E9F0 !important; /* Lightest shade for text */
-  background-color: #36244b !important; /* Dark green for primary button background */
+  color: #E8E9F0 !important;
+  /* Lightest shade for text */
+  background-color: #36244b !important;
+  /* Dark green for primary button background */
 }
 
 body {
-  background-color: #E8E9F0 !important; /* Lightest shade for body background to follow the 60% rule */
+  background-color: #E8E9F0 !important;
+  /* Lightest shade for body background to follow the 60% rule */
 }
 
-.navbar-light{
-    background-color: #6A6186;
-    font-size: 2.25rem;
+.navbar-light {
+  background-color: #6A6186;
+  font-size: 2.25rem;
 }
+
 .center-button {
   text-align: center;
 }
+
 .flex-1 {
   display: inline-flex;
   flex-direction: row;
@@ -51,9 +63,19 @@ body {
   align-items: center;
 }
 
-.remove-underline{
-text-decoration-line: none;
+.remove-underline {
+  text-decoration-line: none;
 }
-.text-color{
-  color: #E8E9F0 !important; 
+
+.show-underline-hover {
+  text-decoration-line: none;
+}
+
+.show-underline-hover:hover {
+  text-decoration-line: underline;
+}
+
+
+.text-color {
+  color: #E8E9F0 !important;
 }
