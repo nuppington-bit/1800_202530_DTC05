@@ -1,69 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>My BCIT Project</title>
-    <meta name="comp1800 template" content="My 1800 App" />
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <title>My BCIT Project</title>
+  <meta name="comp1800 template" content="My 1800 App" />
 
-    <!-- Other libraries go here -->
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-  </head>
+  <!-- Other libraries go here -->
 
-  <body style="background-color: white !important">
-    <main>
-      <div id="articles_go_here"></div>
-      <template id="article_card_template">
-        <div class="card mx-auto mt-5" style="width: 50%">
-          <div class="card-header">
-            <a class="remove-underline text-body" href="#">
-              <h3 id="article_name"></h3>
-            </a>
-          </div>
-          <div class="card-body">
-            <p id="summary_text"></p>
-            <div class="">
-              <button class="btn btn-main">
-                <a
-                  class="remove-underline text-color"
-                  id="article_link"
-                  href=""
-                >
-                  Read more
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#000000"
-                    stroke-width="1"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path stroke="currentColor" d="M20 12l-10 0" />
-                    <path stroke="currentColor" d="M20 12l-4 4" />
-                    <path stroke="currentColor" d="M20 12l-4 -4" />
-                  </svg>
-                </a>
-              </button>
-            </div>
+  <!-- Link to styles of your own -->
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&icon_names=network_intelligence" />
+</head>
+
+<body style="background-color: white !important">
+  <main>
+    <div id="articles_go_here"></div>
+    <template id="article_card_template">
+      <div class="card mx-auto mt-5" style="width: 50%">
+        <div class="card-header">
+          <a class="remove-underline text-body" href="#">
+            <h3 id="article_name"></h3>
+            <svg xmlns="http://www.w3.org/2000/svg" id="brain-1" height="48px" viewBox="0 -960 960 960" width="48px"
+              fill="#000">
+              <path
+                d="M317-160q-8 0-15-4t-11-11l-84-150h71l42 80h90v-30h-72l-42-80H191l-63-110q-2-4-3-7.5t-1-7.5q0-2 4-15l63-110h105l42-80h72v-30h-90l-42 80h-71l84-150q4-7 11-11t15-4h118q13 0 21.5 8.5T465-770v175h-85l-30 30h115v130h-98l-39-80h-98l-30 30h108l40 80h117v215q0 13-8.5 21.5T435-160H317Zm208 0q-13 0-21.5-8.5T495-190v-215h117l40-80h108l-30-30h-98l-39 80h-98v-130h115l-30-30h-85v-175q0-13 8.5-21.5T525-800h118q8 0 15 4t11 11l84 150h-71l-42-80h-90v30h72l42 80h105l63 110q2 4 3 7.5t1 7.5q0 2-4 15l-63 110H664l-42 80h-72v30h90l42-80h71l-84 150q-4 7-11 11t-15 4H525Z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="brain-2" height="48px" viewBox="0 -960 960 960" width="48px"
+              fill="#808080">
+              <path
+                d="M317-160q-8 0-15-4t-11-11l-84-150h71l42 80h90v-30h-72l-42-80H191l-63-110q-2-4-3-7.5t-1-7.5q0-2 4-15l63-110h105l42-80h72v-30h-90l-42 80h-71l84-150q4-7 11-11t15-4h118q13 0 21.5 8.5T465-770v175h-85l-30 30h115v130h-98l-39-80h-98l-30 30h108l40 80h117v215q0 13-8.5 21.5T435-160H317Zm208 0q-13 0-21.5-8.5T495-190v-215h117l40-80h108l-30-30h-98l-39 80h-98v-130h115l-30-30h-85v-175q0-13 8.5-21.5T525-800h118q8 0 15 4t11 11l84 150h-71l-42-80h-90v30h72l42 80h105l63 110q2 4 3 7.5t1 7.5q0 2-4 15l-63 110H664l-42 80h-72v30h90l42-80h71l-84 150q-4 7-11 11t-15 4H525Z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="brain-3" height="48px" viewBox="0 -960 960 960" width="48px"
+              fill="#808080">
+              <path
+                d="M317-160q-8 0-15-4t-11-11l-84-150h71l42 80h90v-30h-72l-42-80H191l-63-110q-2-4-3-7.5t-1-7.5q0-2 4-15l63-110h105l42-80h72v-30h-90l-42 80h-71l84-150q4-7 11-11t15-4h118q13 0 21.5 8.5T465-770v175h-85l-30 30h115v130h-98l-39-80h-98l-30 30h108l40 80h117v215q0 13-8.5 21.5T435-160H317Zm208 0q-13 0-21.5-8.5T495-190v-215h117l40-80h108l-30-30h-98l-39 80h-98v-130h115l-30-30h-85v-175q0-13 8.5-21.5T525-800h118q8 0 15 4t11 11l84 150h-71l-42-80h-90v30h72l42 80h105l63 110q2 4 3 7.5t1 7.5q0 2-4 15l-63 110H664l-42 80h-72v30h90l42-80h71l-84 150q-4 7-11 11t-15 4H525Z" />
+            </svg>
+          </a>
+        </div>
+        <div class="card-body">
+          <p id="summary_text"></p>
+          <div class="">
+            <button class="btn btn-main">
+              <a class="remove-underline text-color" id="article_link" href="">
+                Read more
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                  stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="currentColor" d="M20 12l-10 0" />
+                  <path stroke="currentColor" d="M20 12l-4 4" />
+                  <path stroke="currentColor" d="M20 12l-4 -4" />
+                </svg>
+              </a>
+            </button>
           </div>
         </div>
-      </template>
-    </main>
+      </div>
+    </template>
+  </main>
 
-    <script type="module" src="./src/main.js"></script>
-    <script type="module" src="./src/article_card.js"></script>
-  </body>
+  <script type="module" src="./src/main.js"></script>
+  <script type="module" src="./src/article_card.js"></script>
+</body>
+
 </html>
