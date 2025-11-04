@@ -76,32 +76,37 @@ function clearStatusClass(element) {
   element.classList.remove("wrong");
 }
 
-const question = [
+const questions = [
   {
-    questions: "how secure is your?",
+    question: "What is 2 + 2?",
     answers: [
-      { text: "very", correct: true },
-      { text: "not very", correct: false },
-      { text: "extremely", corect: false },
-      { text: "not at all", correct: false },
+      { text: "4", correct: true },
+      { text: "22", correct: false },
     ],
   },
   {
-    questions: "how secure is your?",
+    question: "Who is the best YouTuber?",
     answers: [
-      { text: "very", correct: true },
-      { text: "not very", correct: false },
-      { text: "extremely", corect: false },
-      { text: "not at all", correct: false },
+      { text: "Web Dev Simplified", correct: true },
+      { text: "Traversy Media", correct: true },
+      { text: "Dev Ed", correct: true },
+      { text: "Fun Fun Function", correct: true },
     ],
   },
   {
-    questions: "how secure is your?",
+    question: "Is web development fun?",
     answers: [
-      { text: "very", correct: true },
-      { text: "not very", correct: false },
-      { text: "extremely", corect: false },
-      { text: "not at all", correct: false },
+      { text: "Kinda", correct: false },
+      { text: "YES!!!", correct: true },
+      { text: "Um no", correct: false },
+      { text: "IDK", correct: false },
+    ],
+  },
+  {
+    question: "What is 4 * 2?",
+    answers: [
+      { text: "6", correct: false },
+      { text: "8", correct: true },
     ],
   },
 ];
