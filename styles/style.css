@@ -11,6 +11,10 @@
   /* Dark green for brand name & nav links for visibility */
 }
 
+.nav-link {
+  font-size: 1.25rem !important;
+}
+
 .btn-info {
   color: #E8E9F0 !important;
   /* Lightest shade for text on info button for contrast */
