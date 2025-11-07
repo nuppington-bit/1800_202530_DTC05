@@ -28,7 +28,7 @@ class SiteNavbar extends HTMLElement {
                                     <a class="nav-link show-underline-hover" href="/">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link show-underline-hover" href="/article_card_template.html">Articles</a>
+                                    <a class="nav-link show-underline-hover" href="/main.html">Articles</a>
                                 </li>
                             </ul>
                             <div class="d-flex align-items-center gap-2 ms-lg-2" id="rightControls">
