@@ -22,14 +22,15 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&icon_names=network_intelligence"
     />
+    <script type="module" src="./src/components/site-navbar.js"></script>
   </head>
 
   <body style="background-color: white !important">
-    <SiteNavbar></SiteNavbar>
+    <site-navbar></site-navbar>   
     <main>
       <div id="articles_go_here"></div>
       <template id="article_card_template">
-        <div class="card mx-auto mt-5" style="width: 50%">
+        <div class="card mx-auto mt-5 max-w-md" style="width: 75%">
           <div class="card-header">
             <a
               class="show-underline-hover text-body"
@@ -77,7 +78,7 @@
           </div>
           <div class="card-body">
             <p id="summary_text"></p>
-            <div class="">
+            <div class="pt-3">
               <a class="remove-underline text-color" id="article_link" href="">
                 <button class="btn btn-main">
                   Read more
