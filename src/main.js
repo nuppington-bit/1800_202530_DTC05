@@ -32,11 +32,6 @@ function addBookmark() {
 
     const articleId = btn.dataset.articleId;
 
-    const user = await new Promise((reslove) =>
-      onAuthReady((user) => reslove(user))
-    );
-    if (!user) return;
-
     btn.classList.toggle("clicked");
 
     const bookmarkRef = doc(db, "users", user.uid, "bookmarks", articleId);
