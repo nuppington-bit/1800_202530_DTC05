@@ -19,7 +19,16 @@ function showUsersBookmarks() {
     }
   });
 }
-function addBookmark() {}
+function addBookmark() {
+  const articlesContainer = document.querySelector("#articles_go_here");
+
+  articlesContainer.addEventListener("click", (event) => {
+    const btn = event.target.closest(".bookmarkBtn");
+    if (!btn) return;
+
+    btn.classList.toggle("clicked");
+  });
+}
 async function displayArticleCardsDynamically(params) {
   onAuthReady(async (user) => {
     if (!user) {
@@ -68,3 +77,4 @@ async function displayArticleCardsDynamically(params) {
 }
 
 displayArticleCardsDynamically();
+addBookmark();

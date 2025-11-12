@@ -7,7 +7,7 @@
 
 .navbar-light .navbar-brand,
 .navbar-light .navbar-nav .nav-link {
-  color: #E8E9F0;
+  color: #e8e9f0;
   /* Dark green for brand name & nav links for visibility */
 }
 
@@ -16,7 +16,7 @@
 }
 
 .btn-info {
-  color: #E8E9F0 !important;
+  color: #e8e9f0 !important;
   /* Lightest shade for text on info button for contrast */
   background-color: #728661 !important;
   /* Light green for button background */
@@ -25,14 +25,14 @@
 }
 
 .btn-info:hover {
-  color: #E8E9F0 !important;
+  color: #e8e9f0 !important;
   /* Lightest shade for text */
   background-color: #667756 !important;
   /* Dark green for primary button background */
 }
 
 .btn-main {
-  color: #E8E9F0 !important;
+  color: #e8e9f0 !important;
   /* Lightest shade for text */
   background-color: #493165 !important;
   /* Dark green for primary button background */
@@ -40,19 +40,19 @@
 }
 
 .btn-main:hover {
-  color: #E8E9F0 !important;
+  color: #e8e9f0 !important;
   /* Lightest shade for text */
   background-color: #36244b !important;
   /* Dark green for primary button background */
 }
 
 body {
-  background-color: #E8E9F0 !important;
+  background-color: #e8e9f0 !important;
   /* Lightest shade for body background to follow the 60% rule */
 }
 
 .navbar-light {
-  background-color: #6A6186;
+  background-color: #6a6186;
   font-size: 2.25rem;
 }
 
@@ -79,7 +79,14 @@ body {
   text-decoration-line: underline;
 }
 
-
 .text-color {
-  color: #E8E9F0 !important;
+  color: #e8e9f0 !important;
+}
+.bookmarkBtn svg {
+  transition: fill 0.2s ease;
+  fill: #fff;
+}
+
+.bookmarkBtn.clicked svg {
+  fill: #000;
 }
