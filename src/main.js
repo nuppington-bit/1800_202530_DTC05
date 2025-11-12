@@ -24,23 +24,30 @@ function showUsersBookmarks() {
   });
 }
 function addBookmark() {
-  const articlesContainer = document.querySelector("#articles_go_here");
-
-  articlesContainer.addEventListener("click", async (event) => {
-    const btn = event.target.closest(".bookmarkBtn");
-    if (!btn) return;
-
-    const articleId = btn.dataset.articleId;
-
-    btn.classList.toggle("clicked");
-
-    const bookmarkRef = doc(db, "users", user.uid, "bookmarks", articleId);
-    if (btn.classList.contains("clicked")) {
-      await setDoc(bookmarkRef, { articleId });
-    } else {
-      await deleteDoc(bookmarkRef);
+  onAuthReady(async (user) => {
+    if(!user) {
+      location.href = "index.html";
+      return;
     }
-  });
+    const articlesContainer = document.querySelector("#articles_go_here");
+  
+    articlesContainer.addEventListener("click", async (event) => {
+      
+      const btn = event.target.closest(".bookmarkBtn");
+      if (!btn) return;
+  
+      const articleId = btn.dataset.articleId;
+  
+      btn.classList.toggle("clicked");
+  
+      const bookmarkRef = doc(db, "users", user.uid, "bookmarks", articleId);
+      if (btn.classList.contains("clicked")) {
+        await setDoc(bookmarkRef, { articleId });
+      } else {
+        await deleteDoc(bookmarkRef);
+      }
+    });
+  })
 }
 async function displayArticleCardsDynamically() {
   onAuthReady(async (user) => {
@@ -67,7 +74,7 @@ async function displayArticleCardsDynamically() {
       const querySnapshot = await getDocs(articlesCollectionRef);
       querySnapshot.forEach(async (docSnap) => {
         let newcard = cardTemplate.content.cloneNode(true);
-        const article = docSnap.data();
+        const article = docSnap.data(); 
         console.log(article);
         if (article.level + 1 > 1) {
           newcard.querySelector("#brain-2").setAttribute("fill", "#000");
@@ -99,5 +106,9 @@ async function displayArticleCardsDynamically() {
   });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  addBookmark();
+})
+
 displayArticleCardsDynamically();
-addBookmark();
+
