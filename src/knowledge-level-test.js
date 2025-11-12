@@ -1,3 +1,6 @@
+import { auth, db } from "/src/firebaseConfig.js";
+import { doc, onSnapshot, getDoc, setDoc } from "firebase/firestore";
+
 const question = [
   {
     question: "What is the strongest type of password?",
@@ -153,87 +156,105 @@ const question = [
 
 const questionElement = document.getElementById("question");
 const answerButton = document.getElementById("answer-buttons");
-const nextButton = document.getElementById("next-button")
+const nextButton = document.getElementById("next-button");
 
 let currentQuestionindex = 0;
 let score = 0;
-function startQuiz(){
-  currentQuestionindex = 0; 
+function startQuiz() {
+  currentQuestionindex = 0;
   score = 0;
   nextButton.innerHTML = "Next";
   showQuestion();
 }
 
-function showQuestion(){
+async function saveKnowledgeLevel(level, score) {
+  onAuthReady(async (user) => {
+    const userRef = doc(db, "users", user.uid);
+    await setDoc(userRef, {
+      knowledgeLevel: level,
+      testAverage: (score / 9) * 100,
+    });
+    return auth.user;
+  });
+}
+
+function showQuestion() {
   resetState();
   let currentQuestion = question[currentQuestionindex];
   let questionNo = currentQuestionindex + 1;
   questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
-  currentQuestion.answer.forEach(answer => {
+  currentQuestion.answer.forEach((answer) => {
     const button = document.createElement("button");
     button.innerHTML = answer.text;
     button.classList.add("btn");
     answerButton.appendChild(button);
-    if(answer.correct){
-      button.dataset.correct = answer.correct 
+    if (answer.correct) {
+      button.dataset.correct = answer.correct;
     }
     button.addEventListener("click", selectAnswer);
   });
 }
 
-function resetState(){
+function resetState() {
   nextButton.style.display = "none";
-  while(answerButton.firstChild){
+  while (answerButton.firstChild) {
     answerButton.removeChild(answerButton.firstChild);
   }
 }
-function selectAnswer(e){
+function selectAnswer(e) {
   const selectedBtn = e.target;
   const isCorrect = selectedBtn.dataset.correct === "true";
-  if(isCorrect){
+  if (isCorrect) {
     selectedBtn.classList.add("correct");
-    score++
-  }else{
+    score++;
+  } else {
     selectedBtn.classList.add("incorrect");
   }
-  Array.from(answerButton.children).forEach(button =>{
-    if(button.dataset.correct === "true"){
+  Array.from(answerButton.children).forEach((button) => {
+    if (button.dataset.correct === "true") {
       button.classList.add("correct");
     }
     button.disabled = true;
   });
-  nextButton.style.display = "block"
+  nextButton.style.display = "block";
 }
 
-function showScore(){
+function showScore() {
   resetState();
-  if(score >= 3 < 6){
-    level = "intermediate"
-  }else if(score >= 6){
-    level = "expert";
-  }else{
-    level = "beginner"
+  console.log(score);
+  let levelString = "beginner";
+  let level = 0;
+  if (score < 3) {
+    levelString = "beginner";
+    level = 0;
+  } else if (3 <= score && score < 6) {
+    levelString = "intermediate";
+    level = 1;
+  } else {
+    levelString = "expert";
+    level = 2;
   }
   questionElement.innerHTML = `You scored ${score} out of ${question.length}!,
-  Your recommended level is ${level}`;
+  Your recommended level is ${levelString}`;
+  saveKnowledgeLevel(level, score);
   nextButton.innerHTML = "Play Again";
   nextButton.style.display = "block";
 }
 
-function handleNextButton(){
-  currentQuestionindex++
-  if(currentQuestionindex < question.length){
+function handleNextButton() {
+  currentQuestionindex++;
+  if (currentQuestionindex < question.length) {
     showQuestion();
-  }else{
+  } else {
     showScore();
   }
 }
 
-nextButton.addEventListener("click", ()=>{
-  if(currentQuestionindex < question.length){
+nextButton.addEventListener("click", () => {
+  if (currentQuestionindex < question.length) {
     handleNextButton();
-  }else{
+  } else {
     startQuiz();
   }
 });
