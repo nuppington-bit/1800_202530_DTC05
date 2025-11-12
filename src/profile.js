@@ -1,9 +1,54 @@
 import { onAuthReady } from "./authentication.js";
 import { db } from "/src/firebaseConfig.js";
-import { doc, getDoc, collection } from "firebase/firestore";
+import { doc, getDoc, collection, updateDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+
+async function saveProfileDetails(name) {
+    const usernameElement = document.getElementById("username")
+    const usernamePlaceholder = document.getElementById("display-name")
+    const profileImage = document.getElementById("profileImage")
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+        throw new Error("No user logged in");
+    }
+
+    const userRef = doc(db, "users", user.uid);
+
+    // Update the document
+    await updateDoc(userRef, {
+        displayName: name
+    });
+
+    usernameElement.textContent = name
+    usernamePlaceholder.setAttribute("placeholder", name)
+    profileImage.textContent = name[0]
+}
+
+async function saveKnowledgeLevel(level) {
+    const levels = ["Beginner", "Intermediate", "Expert"];
+    const knowledgeLevel = document.getElementById("level")
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+        throw new Error("No user logged in");
+    }
+
+    const userRef = doc(db, "users", user.uid);
+
+    // Update the document
+    await updateDoc(userRef, {
+        knowledgeLevel: level
+    });
+    knowledgeLevel.textContent = `Knowledge level: ${levels[level]}`;
+}
+
 
 async function showDashboard() {
     const usernameElement = document.getElementById("username")
+    const usernamePlaceholder = document.getElementById("display-name")
     const knowledgeLevel = document.getElementById("level")
     const testAverage = document.getElementById("average")
     const profileImage = document.getElementById("profileImage")
@@ -16,13 +61,14 @@ async function showDashboard() {
             return;
         }
         const usersCollectionRef = doc(db, "users", user.uid);
-        try{
+        try {
             const querySnapshot = await getDoc(usersCollectionRef);
             usernameElement.textContent = querySnapshot.data().displayName;
+            usernamePlaceholder.setAttribute("placeholder", querySnapshot.data().displayName)
             knowledgeLevel.textContent = `Knowledge level: ${levels[querySnapshot.data().knowledgeLevel]}`;
             testAverage.textContent = `Average: ${String(querySnapshot.data().testAverage).padStart(2, '0')}%`;
             profileImage.textContent = querySnapshot.data().displayName[0]
-            
+
             usernameElement.classList.remove("placeholder")
             knowledgeLevel.classList.remove("placeholder")
             placeholderBr.remove()
@@ -35,3 +81,33 @@ async function showDashboard() {
 }
 
 showDashboard();
+
+document.getElementById("profile-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const displayName = document.getElementById("display-name").value.trim();
+
+    saveProfileDetails(displayName);
+    console.log("done")
+    // // Close modal
+    // const modal = bootstrap.Modal.getInstance(document.getElementById("edit-profile-modal"));
+    // modal.hide();
+
+    // Optionally reset form
+    event.target.reset();
+});
+
+document.getElementById("knowledge-level-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const level = document.getElementById("knowledge-level").value;
+
+    saveKnowledgeLevel(level);
+    console.log("done")
+    // // Close modal
+    // const modal = bootstrap.Modal.getInstance(document.getElementById("level-modal"));
+    // modal.hide();
+
+    // Optionally reset form
+    event.target.reset();
+});
