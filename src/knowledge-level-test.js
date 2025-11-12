@@ -21,7 +21,7 @@ const question = [
       },
       {
         text: "Close the website and not provide the information.",
-        correct: false,
+        correct: true,
       },
       { text: "Make up fake information and enter it", correct: false },
       { text: "Ask a friend what you should do", correct: false },
@@ -38,66 +38,115 @@ const question = [
     ],
   },
   {
-    question: something,
+    question:
+      "Why is Two-Factor Authentication (2FA) an important security feature?",
     answer: [
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
+      {
+        text: "It makes your password shorter and easier to remember.",
+
+        correct: false,
+      },
+      {
+        text: "It prevents websites from tracking your activity.",
+        correct: false,
+      },
+      {
+        text: "It adds a second layer of security, requiring both your password and a temporary code to log in.",
+        correct: true,
+      },
+      {
+        text: "It automatically updates all your software for you.",
+        correct: false,
+      },
     ],
   },
   {
-    question: something,
+    question:
+      "What is the primary risk of using an unsecured public Wi-Fi network (like at a coffee shop) without protection?",
     answer: [
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
+      { text: "It will make your battery drain faster.", correct: false },
+      {
+        text: "Someone else on the network can potentially see the data you are sending and receiving.",
+        correct: true,
+      },
+      { text: "It will automatically share your photos.", correct: false },
+      { text: "It will change your computer's settings.", correct: false },
     ],
   },
   {
-    question: something,
+    question:
+      "What is a key difference between HTTP and HTTPS in a website's address bar?",
     answer: [
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
+      { text: "HTTPS websites load faster.", correct: false },
+      {
+        text: "HTTPS indicates the connection between your browser and the website is encrypted and more secure.",
+        correct: true,
+      },
+      {
+        text: "HTTP is for mobile sites, and HTTPS is for desktop sites.",
+        correct: false,
+      },
+      {
+        text: "HTTPS means the website's content is always accurate and true.",
+        correct: false,
+      },
     ],
   },
   {
-    question: something,
+    question: 'What is a "zero-day" vulnerability',
     answer: [
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
+      {
+        text: "A virus that only activates on a specific date.",
+        correct: false,
+      },
+      {
+        text: "A security flaw in software that is unknown to the vendor and has no available patch.",
+        correct: true,
+      },
+      {
+        text: "A type of phishing attack that happens at midnight.",
+        correct: false,
+      },
+      { text: "A setting that resets your privacy controls.", correct: false },
     ],
   },
   {
-    question: something,
+    question: 'In the context of a data breach, what is "data exfiltration"?',
     answer: [
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
+      { text: "The process of encrypting data to protect it.", correct: false },
+      {
+        text: "The process of securely deleting data",
+        correct: false,
+      },
+      {
+        text: "The public announcement that a breach has occurred.",
+        correct: false,
+      },
+      {
+        text: "The unauthorized transfer of data from a target's network to an attacker's system.",
+        correct: true,
+      },
     ],
   },
   {
-    question: something,
+    question: "What is the core security principle behind a Password Manager?",
     answer: [
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-    ],
-  },
-  {
-    question: something,
-    answer: [
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
+      {
+        text: "To use a single, very complex master password to protect all other unique, complex passwords for different sites.",
+        correct: true,
+      },
+      {
+        text: "To automatically share your passwords across all your devices for convenience.",
+        correct: false,
+      },
+      {
+        text: "To create easy-to-remember passwords for every website.",
+        correct: false,
+      },
+      {
+        text: "To notify companies when your password has been stolen.",
+        correct: false,
+      },
     ],
   },
 ];
@@ -108,7 +157,6 @@ const nextButton = document.getElementById("next-button")
 
 let currentQuestionindex = 0;
 let score = 0;
-
 function startQuiz(){
   currentQuestionindex = 0; 
   score = 0;
@@ -137,7 +185,7 @@ function showQuestion(){
 function resetState(){
   nextButton.style.display = "none";
   while(answerButton.firstChild){
-    answerButton.removeChild(answerButtons.firstChild);
+    answerButton.removeChild(answerButton.firstChild);
   }
 }
 function selectAnswer(e){
@@ -160,7 +208,15 @@ function selectAnswer(e){
 
 function showScore(){
   resetState();
-  questionElement.innerHTml = `You scored ${score} our of $[questions.length]!`;
+  if(score >= 3 < 6){
+    level = "intermediate"
+  }else if(score >= 6){
+    level = "expert";
+  }else{
+    level = "beginner"
+  }
+  questionElement.innerHTML = `You scored ${score} out of ${question.length}!,
+  Your recommended level is ${level}`;
   nextButton.innerHTML = "Play Again";
   nextButton.style.display = "block";
 }

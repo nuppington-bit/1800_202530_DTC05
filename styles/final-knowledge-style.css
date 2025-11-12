@@ -67,8 +67,10 @@ body{
   display: none;
 }
 .correct{
-  background: greenyellow
+  background: rgb(0, 249, 33);
+  color:white;
 }
 .incorrect{
-  background: red
+  background: red;
+  color: white;
 }
