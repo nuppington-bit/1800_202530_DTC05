@@ -106,5 +106,9 @@ async function displayArticleCardsDynamically() {
   });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  addBookmark();
+})
+
 displayArticleCardsDynamically();
-addBookmark();
+
