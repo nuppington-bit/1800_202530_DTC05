@@ -1,5 +1,7 @@
 import { auth, db } from "/src/firebaseConfig.js";
-import { doc, onSnapshot, getDoc, setDoc } from "firebase/firestore";
+import { doc, onSnapshot, getDoc, updateDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { onAuthReady } from "./authentication.js";
 
 const question = [
   {
@@ -168,14 +170,28 @@ function startQuiz() {
 }
 
 async function saveKnowledgeLevel(level, score) {
-  onAuthReady(async (user) => {
+  try {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+      throw new Error("No user logged in");
+    }
+
     const userRef = doc(db, "users", user.uid);
-    await setDoc(userRef, {
+
+    // Update the document
+    await updateDoc(userRef, {
       knowledgeLevel: level,
       testAverage: (score / 9) * 100,
+      lastUpdated: new Date(),
     });
-    return auth.user;
-  });
+
+    return user;
+  } catch (error) {
+    console.error("Full error:", error);
+    throw error;
+  }
 }
 
 function showQuestion() {
