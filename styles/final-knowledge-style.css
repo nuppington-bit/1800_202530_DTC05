@@ -68,9 +68,11 @@ body{
 }
 .correct{
   background: rgb(0, 249, 33);
-  color:white;
+  color:black;
+  font: bold;
 }
 .incorrect{
   background: red;
-  color: white;
+  color: black;
+  font: bold;
 }
