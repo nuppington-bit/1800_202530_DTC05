@@ -1,6 +1,5 @@
 import { db } from "./firebaseConfig.js";
 import { onAuthReady } from "./authentication.js";
-import { doc, onSnapshot, getDoc } from "firebase/firestore";
 import {
   collection,
   getDocs,
@@ -9,6 +8,11 @@ import {
   query,
   orderBy,
   where,
+  doc,
+  onSnapshot,
+  getDoc,
+  setDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 function showUsersBookmarks() {
@@ -22,14 +26,28 @@ function showUsersBookmarks() {
 function addBookmark() {
   const articlesContainer = document.querySelector("#articles_go_here");
 
-  articlesContainer.addEventListener("click", (event) => {
+  articlesContainer.addEventListener("click", async (event) => {
     const btn = event.target.closest(".bookmarkBtn");
     if (!btn) return;
 
+    const articleId = btn.dataset.articleId;
+
+    const user = await new Promise((reslove) =>
+      onAuthReady((user) => reslove(user))
+    );
+    if (!user) return;
+
     btn.classList.toggle("clicked");
+
+    const bookmarkRef = doc(db, "users", user.uid, "bookmarks", articleId);
+    if (btn.classList.contains("clicked")) {
+      await setDoc(bookmarkRef, { articleId });
+    } else {
+      await deleteDoc(bookmarkRef);
+    }
   });
 }
-async function displayArticleCardsDynamically(params) {
+async function displayArticleCardsDynamically() {
   onAuthReady(async (user) => {
     if (!user) {
       location.href = "index.html";
@@ -52,9 +70,9 @@ async function displayArticleCardsDynamically(params) {
 
     try {
       const querySnapshot = await getDocs(articlesCollectionRef);
-      querySnapshot.forEach((doc) => {
+      querySnapshot.forEach(async (docSnap) => {
         let newcard = cardTemplate.content.cloneNode(true);
-        const article = doc.data();
+        const article = docSnap.data();
         console.log(article);
         if (article.level + 1 > 1) {
           newcard.querySelector("#brain-2").setAttribute("fill", "#000");
@@ -67,6 +85,16 @@ async function displayArticleCardsDynamically(params) {
         newcard.querySelector(".summary_text").textContent = article.summary;
         newcard.querySelector(".article_link").href = article.link;
         newcard.querySelector(".article_link_title").href = article.link;
+        const bookmarkBtn = newcard.querySelector(".bookmarkBtn");
+        bookmarkBtn.dataset.articleId = docSnap.id;
+
+        //checks if the user already has the bookmark in the database
+        const bookmarkRef = doc(db, "users", user.uid, "bookmarks", docSnap.id);
+        const bookmarkSnapshot = await getDoc(bookmarkRef);
+
+        if (bookmarkSnapshot.exists()) {
+          bookmarkBtn.classList.add("clicked");
+        }
 
         document.getElementById("articles_go_here").appendChild(newcard);
       });
