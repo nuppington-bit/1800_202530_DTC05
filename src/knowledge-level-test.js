@@ -4,26 +4,37 @@ const question = [
     answer: [
       { text: "A common word like potato", correct: false },
       { text: "Your pet's name and your birth year ", correct: false },
-      { text: "A long, random mix of letters (upper and lower case), numbers, and symbols", correct: true},
+      {
+        text: "A long, random mix of letters (upper and lower case), numbers, and symbols",
+        correct: true,
+      },
       { text: "something", correct: false },
     ],
   },
   {
-    question:"What should you do if a website you don't trust asks for your personal information like your home address or phone number?",
+    question:
+      "What should you do if a website you don't trust asks for your personal information like your home address or phone number?",
     answer: [
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
+      {
+        text: "Provide the information so you can access the website.",
+        correct: false,
+      },
+      {
+        text: "Close the website and not provide the information.",
+        correct: false,
+      },
+      { text: "Make up fake information and enter it", correct: false },
+      { text: "Ask a friend what you should do", correct: false },
     ],
   },
   {
-    question: something,
+    question:
+      'You get an email that says "Your account will be closed! Click here to verify your identity!" What is the most likely threat?',
     answer: [
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
-      { text: "something", correct: false },
+      { text: "A software update", correct: false },
+      { text: "A phishing scam", correct: true },
+      { text: "A helpful reminder from a company", correct: false },
+      { text: "A new social media trend", correct: false },
     ],
   },
   {
