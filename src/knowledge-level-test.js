@@ -239,20 +239,20 @@ function selectAnswer(e) {
 function showScore() {
   resetState();
   console.log(score);
-  let levelString = "beginner";
+  let levelString = "Beginner";
   let level = 0;
   if (score < 3) {
-    levelString = "beginner";
+    levelString = "Beginner";
     level = 0;
   } else if (3 <= score && score < 6) {
-    levelString = "intermediate";
+    levelString = "Intermediate";
     level = 1;
   } else {
-    levelString = "expert";
+    levelString = "Expert";
     level = 2;
   }
   questionElement.innerHTML = `You scored ${score} out of ${question.length}!,
-  Your recommended level is ${levelString}`;
+  Your recommended level is ${levelString}.`;
   saveKnowledgeLevel(level, score);
   nextButton.innerHTML = "Play Again";
   nextButton.style.display = "block";
