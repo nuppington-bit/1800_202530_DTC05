@@ -22,16 +22,16 @@ class SiteNavbar extends HTMLElement {
                             </svg>
                             WebSafe
                         </a>
+                        <div class="d-flex gap-4">
                         <div id="mobileAuthControls" class="auth-controls d-flex align-items-center gap-2 my-2 my-lg-0">
                             <!-- populated by JS -->
                         </div>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto">
+                        </div>
+                        <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a class="nav-link show-underline-hover" href="/">Home</a>
                                 </li>
@@ -39,14 +39,8 @@ class SiteNavbar extends HTMLElement {
                                     <a class="nav-link show-underline-hover" href="/main.html">Articles</a>
                                 </li>
                             </ul>
-                            <div class="d-flex align-items-center gap-2 ms-lg-2" id="rightControls">
-                                <form class="align-items-center gap-2 my-2 d-none d-md-flex my-lg-0" id="navSearch" role="search">
-                                    <input class="form-control d-none d-sm-block w-auto" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="btn btn-outline-light d-none d-sm-inline-block" type="submit">Search</button>
-                                </form>
-                                <div id="authControls" class="auth-controls d-flex align-items-center gap-2 my-2 my-lg-0">
-                                    <!-- populated by JS -->
-                                </div>
+                            <div id="authControls" class="auth-controls d-flex align-items-center gap-2 my-2 my-lg-0">
+                                <!-- populated by JS -->
                             </div>
                         </div>
                     </div>
