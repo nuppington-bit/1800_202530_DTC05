@@ -89,11 +89,6 @@ document.getElementById("profile-form").addEventListener("submit", function (eve
 
     saveProfileDetails(displayName);
     console.log("done")
-    // // Close modal
-    // const modal = bootstrap.Modal.getInstance(document.getElementById("edit-profile-modal"));
-    // modal.hide();
-
-    // Optionally reset form
     event.target.reset();
 });
 
@@ -104,10 +99,15 @@ document.getElementById("knowledge-level-form").addEventListener("submit", funct
 
     saveKnowledgeLevel(level);
     console.log("done")
-    // // Close modal
-    // const modal = bootstrap.Modal.getInstance(document.getElementById("level-modal"));
-    // modal.hide();
-
-    // Optionally reset form
     event.target.reset();
 });
+
+if (window.history && window.history.pushState) {
+    document.getElementById("level-modal").on('show.bs.modal', function (e) {
+        window.history.pushState('forward', null, './#levelModal');
+    });
+
+    window.on('popstate', function () {
+        document.getElementById("level-modal").modal('hide');
+    });
+}

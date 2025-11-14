@@ -14,7 +14,7 @@ class SiteNavbar extends HTMLElement {
     renderNavbar() {
         this.innerHTML = `
             <header>
-                <nav class="navbar navbar-expand-lg navbar-light">
+                <nav class="navbar navbar-expand-md navbar-dark">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#E8E9F0">
@@ -22,6 +22,14 @@ class SiteNavbar extends HTMLElement {
                             </svg>
                             WebSafe
                         </a>
+                        <div id="mobileAuthControls" class="auth-controls d-flex align-items-center gap-2 my-2 my-lg-0">
+                            <!-- populated by JS -->
+                        </div>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
@@ -32,7 +40,7 @@ class SiteNavbar extends HTMLElement {
                                 </li>
                             </ul>
                             <div class="d-flex align-items-center gap-2 ms-lg-2" id="rightControls">
-                                <form class="d-flex align-items-center gap-2 my-2 my-lg-0" id="navSearch" role="search">
+                                <form class="align-items-center gap-2 my-2 d-none d-md-flex my-lg-0" id="navSearch" role="search">
                                     <input class="form-control d-none d-sm-block w-auto" type="search" placeholder="Search" aria-label="Search">
                                     <button class="btn btn-outline-light d-none d-sm-inline-block" type="submit">Search</button>
                                 </form>
@@ -56,13 +64,16 @@ class SiteNavbar extends HTMLElement {
     // -------------------------------------------------------------
     renderAuthControls() {
         const authControls = this.querySelector("#authControls");
+        const mobileAuthControls = this.querySelector("#mobileAuthControls");
         const navList = this.querySelector("ul"); // your main nav <ul>
 
         // invisible placeholder to maintain layout
         authControls.innerHTML = `<div class="btn btn-outline-light" style="visibility: hidden; min-width: 80px;">Log out</div>`;
+        mobileAuthControls.innerHTML = `<div class="btn btn-outline-light" style="visibility: hidden; min-width: 80px;">Log out</div>`;
 
         onAuthStateChanged(auth, (user) => {
             let updatedAuthControl;
+            let updatedMobileAuthControl;
 
             // Remove existing "Profile" link if present (avoid duplicates)
             const existingProfile = navList?.querySelector("#profileLink");
@@ -78,8 +89,10 @@ class SiteNavbar extends HTMLElement {
                 }
 
                 // 2️⃣ Show logout button
-                updatedAuthControl = `<button class="btn btn-outline-light" id="signOutBtn" type="button" style="min-width: 80px;">Log out</button>`;
+                updatedAuthControl = `<button class="btn btn-outline-light d-none d-md-inline-block text-nowrap min-w-fit" id="signOutBtn" type="button">Log out</button>`;
+                updatedMobileAuthControl = `<button class="btn btn-outline-light d-md-none text-nowrap min-w-fit" id="signOutBtn" type="button">Log out</button>`;
                 authControls.innerHTML = updatedAuthControl;
+                mobileAuthControls.innerHTML = updatedMobileAuthControl;
 
                 const signOutBtn = authControls.querySelector("#signOutBtn");
                 signOutBtn?.addEventListener("click", logoutUser);
@@ -88,8 +101,10 @@ class SiteNavbar extends HTMLElement {
                 if (existingProfile) existingProfile.remove();
 
                 // Show login button
-                updatedAuthControl = `<a class="btn btn-outline-light" id="loginBtn" href="/login.html" style="min-width: 80px;">Log in</a>`;
+                updatedAuthControl = `<a class="btn btn-outline-light d-none d-md-inline-block text-nowrap min-w-fit" id="loginBtn" href="/login.html">Log in</a>`;
                 authControls.innerHTML = updatedAuthControl;
+                updatedMobileAuthControl = `<a class="btn btn-outline-light d-md-none text-nowrap min-w-fit" id="loginBtn" href="/login.html">Log in</a>`;
+                mobileAuthControls.innerHTML = updatedMobileAuthControl;
             }
         });
     }
