@@ -27,13 +27,20 @@
     <div id="articles_go_here"></div>
     <div class="offcanvas-md offcanvas-start d-flex flex-column flex-shrink-0 p-3 bg-light" id="filterSidebar"
       style="width: 280px;">
-      <span class="fs-4 offcanvas-title">Sidebar</span>
+      <span class="fs-4 offcanvas-title d-flex flex-row justify-content-between">Sidebar <button type="button"
+          class="btn-close d-md-none" data-bs-toggle="offcanvas" data-bs-target="#filterSidebar"
+          aria-label="Close"></button></span>
       <hr>
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Profile</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Settings</a></li>
-      </ul>
+      <form id="filter-form">
+        <label for="knowledge-level" class="form-label">Knowledge Level</label>
+        <select class="form-select" id="knowledge-level" name="knowledge-level">
+          <option value=0>Beginner</option>
+          <option value=1>Intermediate</option>
+          <option value=2>Expert</option>
+        </select>
+      </form>
+      <button type="submit" form="filter-form" data-bs-dismiss="offcanvas" data-bs-target="#filterSidebar"
+        class="btn btn-info mt-3">Filter</button>
     </div>
     <template id="article_card_template">
       <div class="card mx-auto mt-5 max-w-md" style="width: 75%">

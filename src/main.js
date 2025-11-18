@@ -94,30 +94,121 @@ function addFilterButton() {
   navbarToggleButton.parentNode.insertBefore(filterToggleButton, navbarToggleButton);
 }
 
-async function displayArticleCardsDynamically() {
+async function getQueryFilter(first_fetch, user) {
+  let knowledgeLevelSelector = document.getElementById("knowledge-level")
+  let userKnowledgeLevel = 0;
+  let knowledgeFilter = 0;
+  const usersCollectionRef = doc(db, "users", user.uid);
+  try {
+    const querySnapshot = await getDoc(usersCollectionRef);
+    if (first_fetch) {
+      userKnowledgeLevel = querySnapshot.data().knowledgeLevel;
+      knowledgeFilter = userKnowledgeLevel
+      knowledgeLevelSelector.value = userKnowledgeLevel
+      knowledgeLevelSelector.options[knowledgeLevelSelector.selectedIndex].text = knowledgeLevelSelector.options[knowledgeLevelSelector.selectedIndex].text + " (Default)"
+    } else {
+      knowledgeFilter = parseInt(knowledgeLevelSelector.options[knowledgeLevelSelector.selectedIndex].value)
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return knowledgeFilter
+}
+
+async function displayArticleCardsDynamically(first_fetch) {
   onAuthReady(async (user) => {
     if (!user) {
       location.href = "index.html";
       return;
     }
-    let userKnowledgeLevel = 0;
+    let knowledgeFilter = await getQueryFilter(first_fetch, user);
     let cardTemplate = document.getElementById("article_card_template");
-    const usersCollectionRef = doc(db, "users", user.uid);
-    try {
-      const querySnapshot = await getDoc(usersCollectionRef);
-      userKnowledgeLevel = querySnapshot.data().knowledgeLevel;
-    } catch (error) {
-      console.log(error);
-    }
     const articlesCollectionRef = query(
       collection(db, "articles"),
       orderBy("article_name", "asc"),
-      where("level", "==", userKnowledgeLevel)
+      where("level", "==", knowledgeFilter)
     );
 
     try {
       const querySnapshot = await getDocs(articlesCollectionRef);
-      querySnapshot.forEach(async (docSnap) => {
+      document.getElementById("articles_go_here").innerHTML = `
+      <div class="card mx-auto mt-5 max-w-md" style="width: 75%">
+        <div class="card-header d-flex justify-content-between flex-row">
+          <div class="d-flex flex-column">
+            <a class="show-underline-hover text-body article_link_title" href="#">
+              <h3 class="article_name placeholder">Lorem Ipsum</h3>
+            </a>
+            <div class="d-flex flex-row">
+              <svg xmlns="http://www.w3.org/2000/svg" id="brain-1" height="48px" viewBox="0 -960 960 960" width="48px"
+                fill="#808080">
+                <path
+                  d="M317-160q-8 0-15-4t-11-11l-84-150h71l42 80h90v-30h-72l-42-80H191l-63-110q-2-4-3-7.5t-1-7.5q0-2 4-15l63-110h105l42-80h72v-30h-90l-42 80h-71l84-150q4-7 11-11t15-4h118q13 0 21.5 8.5T465-770v175h-85l-30 30h115v130h-98l-39-80h-98l-30 30h108l40 80h117v215q0 13-8.5 21.5T435-160H317Zm208 0q-13 0-21.5-8.5T495-190v-215h117l40-80h108l-30-30h-98l-39 80h-98v-130h115l-30-30h-85v-175q0-13 8.5-21.5T525-800h118q8 0 15 4t11 11l84 150h-71l-42-80h-90v30h72l42 80h105l63 110q2 4 3 7.5t1 7.5q0 2-4 15l-63 110H664l-42 80h-72v30h90l42-80h71l-84 150q-4 7-11 11t-15 4H525Z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" id="brain-2" height="48px" viewBox="0 -960 960 960" width="48px"
+                fill="#808080">
+                <path
+                  d="M317-160q-8 0-15-4t-11-11l-84-150h71l42 80h90v-30h-72l-42-80H191l-63-110q-2-4-3-7.5t-1-7.5q0-2 4-15l63-110h105l42-80h72v-30h-90l-42 80h-71l84-150q4-7 11-11t15-4h118q13 0 21.5 8.5T465-770v175h-85l-30 30h115v130h-98l-39-80h-98l-30 30h108l40 80h117v215q0 13-8.5 21.5T435-160H317Zm208 0q-13 0-21.5-8.5T495-190v-215h117l40-80h108l-30-30h-98l-39 80h-98v-130h115l-30-30h-85v-175q0-13 8.5-21.5T525-800h118q8 0 15 4t11 11l84 150h-71l-42-80h-90v30h72l42 80h105l63 110q2 4 3 7.5t1 7.5q0 2-4 15l-63 110H664l-42 80h-72v30h90l42-80h71l-84 150q-4 7-11 11t-15 4H525Z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" id="brain-3" height="48px" viewBox="0 -960 960 960" width="48px"
+                fill="#808080">
+                <path
+                  d="M317-160q-8 0-15-4t-11-11l-84-150h71l42 80h90v-30h-72l-42-80H191l-63-110q-2-4-3-7.5t-1-7.5q0-2 4-15l63-110h105l42-80h72v-30h-90l-42 80h-71l84-150q4-7 11-11t15-4h118q13 0 21.5 8.5T465-770v175h-85l-30 30h115v130h-98l-39-80h-98l-30 30h108l40 80h117v215q0 13-8.5 21.5T435-160H317Zm208 0q-13 0-21.5-8.5T495-190v-215h117l40-80h108l-30-30h-98l-39 80h-98v-130h115l-30-30h-85v-175q0-13 8.5-21.5T525-800h118q8 0 15 4t11 11l84 150h-71l-42-80h-90v30h72l42 80h105l63 110q2 4 3 7.5t1 7.5q0 2-4 15l-63 110H664l-42 80h-72v30h90l42-80h71l-84 150q-4 7-11 11t-15 4H525Z" />
+              </svg>
+            </div>
+          </div>
+          <div>
+            <button class="btn bookmarkBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" stroke="#000000"
+                stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="summary_text placeholder">
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupiditate soluta! Pariatur recusandae laudantium quod rerum possimus? Facilis, quod.</p>
+          <div class="d-flex pt-3 justify-content-between align-items-center">
+            <div class="d-flex align-items-center justify-content-center ratingBorder">
+              <div class="d-flex align-items-center justify-content-center border-end">
+                <button class="btn thumbsUpBtn d-flex flex-row my-auto align-middle">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                    stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
+                  </svg>
+                  <p class="py-0 my-auto ps-2">0</p>
+                </button>
+              </div>
+              <div class="d-flex align-items-center justify-content-center">
+                <button class="btn thumbsDownBtn d-flex flex-row my-auto align-middle">
+                  <svg xmlns=" http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                    stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3" />
+                  </svg>
+                  <p class="py-0 my-auto ps-2">0</p>
+                </button>
+              </div>
+            </div>
+            <div class="">
+              <a class="remove-underline text-color article_link" href="" target="_blank">
+                <button class="btn btn-main">
+                  Read more
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                    stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="currentColor" d="M20 12l-10 0" />
+                    <path stroke="currentColor" d="M20 12l-4 4" />
+                    <path stroke="currentColor" d="M20 12l-4 -4" />
+                  </svg>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>`;
+      let newArticles = document.createElement("div")
+      querySnapshot.forEach(async function (docSnap, index) {
         let newcard = cardTemplate.content.cloneNode(true);
         const article = docSnap.data();
         console.log(article);
@@ -142,8 +233,8 @@ async function displayArticleCardsDynamically() {
         if (bookmarkSnapshot.exists()) {
           bookmarkBtn.classList.add("clicked");
         }
-
-        document.getElementById("articles_go_here").appendChild(newcard);
+        newArticles.appendChild(newcard);
+        document.getElementById("articles_go_here").innerHTML = newArticles.innerHTML
       });
     } catch (error) {
       console.error("error getting documents", error);
@@ -157,4 +248,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 addFilterButton();
-displayArticleCardsDynamically();
+displayArticleCardsDynamically(true);
+
+document.getElementById("filter-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  displayArticleCardsDynamically(false);
+});
