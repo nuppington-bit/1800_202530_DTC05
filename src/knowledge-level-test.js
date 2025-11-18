@@ -214,6 +214,7 @@ function showQuestion() {
 }
 
 function resetState() {
+  homeButton.style.display = "none"
   nextButton.style.display = "none";
   while (answerButton.firstChild) {
     answerButton.removeChild(answerButton.firstChild);
