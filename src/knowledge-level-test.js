@@ -159,6 +159,7 @@ const question = [
 const questionElement = document.getElementById("question");
 const answerButton = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-button");
+const homeButton = document.getElementById("home-button")
 
 let currentQuestionindex = 0;
 let score = 0;
@@ -256,6 +257,7 @@ function showScore() {
   saveKnowledgeLevel(level, score);
   nextButton.innerHTML = "Play Again";
   nextButton.style.display = "block";
+  homeButton.style.display = "block";
 }
 
 function handleNextButton() {
