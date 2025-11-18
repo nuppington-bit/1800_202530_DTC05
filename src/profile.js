@@ -95,19 +95,19 @@ document.getElementById("profile-form").addEventListener("submit", function (eve
 document.getElementById("knowledge-level-form").addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const level = document.getElementById("knowledge-level").value;
+    const level = parseInt(document.getElementById("knowledge-level").value);
 
     saveKnowledgeLevel(level);
     console.log("done")
     event.target.reset();
 });
 
-if (window.history && window.history.pushState) {
-    document.getElementById("level-modal").on('show.bs.modal', function (e) {
-        window.history.pushState('forward', null, './#levelModal');
-    });
+// if (window.history && window.history.pushState) {
+//     document.getElementById("level-modal").on('show.bs.modal', function (e) {
+//         window.history.pushState('forward', null, './#levelModal');
+//     });
 
-    window.on('popstate', function () {
-        document.getElementById("level-modal").modal('hide');
-    });
-}
+//     window.on('popstate', function () {
+//         document.getElementById("level-modal").modal('hide');
+//     });
+// }
