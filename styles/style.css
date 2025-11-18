@@ -89,10 +89,37 @@ body {
 }
 
 .bookmarkBtn svg {
-  transition: fill 0.2s ease;
+  transition: fill 0.5s ease;
   fill: #fff;
 }
 
 .bookmarkBtn.clicked svg {
+  transition: fill 0.5s ease;
   fill: #000;
+}
+.ratingBorder {
+  border: 1px solid black;
+  border-radius: 16px;
+}
+.thumbsUpBtn svg {
+  transition: fill 0.5s ease;
+  fill: #fff;
+  stroke: #000;
+}
+
+.thumbsUpBtn.clicked svg {
+  transition: fill 0.5s ease;
+  fill: #000;
+  stroke: white;
+}
+.thumbsDownBtn svg {
+  transition: fill 0.5s ease;
+  fill: #fff;
+  stroke: #000;
+}
+
+.thumbsDownBtn.clicked svg {
+  transition: fill 0.5s ease;
+  fill: #000;
+  stroke: white;
 }
