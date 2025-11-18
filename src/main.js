@@ -15,6 +15,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
+
 function addRating() {
   onAuthReady(async (user) => {
     if (!user) {
