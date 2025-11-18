@@ -11,21 +11,21 @@ body{
 
 .app{
   background: #FFF;
-  width:90%;
+  width:95%;
   max-width: 600px;
   margin:100px auto 0;
   border-radius: 10px;
   padding: 60px;
 }
 .app h1{
-  font-size: 25px;
+  font-size: 30px;
   color:#001e4d;
   font-weight:600;
   border-bottom: 1px solid #333;
   padding-bottom: 30px;
 }
 .quiz{
-  padding:20px 0;
+  padding:25px 0;
 }
 .quiz h2{
   font-size: 20px;
@@ -34,12 +34,13 @@ body{
 }
 
 .btn{
+  font-size:15px;
   background: #fff;
   color: #222;
   font-weight: 500;
   width:100%;
   border: 1px solid #222;
-  padding: 10px;
+  padding: 15px;
   margin: 10px 0;
   text-align:left;
   border-radius: 4px;
@@ -55,12 +56,13 @@ body{
 }
 
 #next-button{
+  font-size:15px;
   background: #86C66F;
   color:#fff;
   font-weight: 500;
   width: 150px;
   border: 0;
-  padding: 10px;
+  padding: 15px;
   margin: 20px auto 0;
   border-radius: 4px;
   cursor: pointer;
@@ -78,12 +80,13 @@ body{
 }
 
 #home-button {
+  font-size:15px;
   background: #86C66F;
   color:#fff;
   font-weight: 500;
   width: 150px;
   border: 0;
-  padding: 10px;
+  padding: 15px;
   margin: 20px auto 0;
   border-radius: 4px;
   cursor: pointer;
