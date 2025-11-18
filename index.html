@@ -48,30 +48,112 @@
       </div>
       <div
         class="mx-auto w-50 d-flex align-items-center justify-content-center"
+        id="loginSignupSection"
       >
-        <div
-          class="dropdown center-button d-inline-flex flex-md-row flex-col"
-          style="width: fit-content"
-        >
-          <a href="/final-knowledge-level-test.html"
-            ><button class="btn-main btn">Take Test</button></a
-          >
-          <p class="px-4 my-auto fs-3">or</p>
-          <button
-            class="btn btn-info dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Set knowledge level
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Beginner </a></li>
-            <li><a class="dropdown-item" href="#">Intermediate</a></li>
-            <li><a class="dropdown-item" href="#">Advanced</a></li>
-          </ul>
-        </div>
+        <a href="/login.html">
+          <button class="btn-main btn">Log in</button>
+        </a>
+        <p class="px-4 my-auto fs-4">or</p>
+        <a href="/login.html?view=signup">
+          <button class="btn btn-info">Sign up</button>
+        </a>
       </div>
+      <div class="d-none" id="bookmarksGoHere">
+        <h1 class="w-75 mx-auto">My BookMarks</h1>
+        <hr class="w-75 mx-auto" />
+      </div>
+      <template id="bookmarkTemplate">
+        <div class="card mx-auto mt-5 max-w-md" style="width: 75%">
+          <div class="card-header">
+            <a
+              class="show-underline-hover text-body article_link_title"
+              href="#"
+            >
+              <h3 class="article_name"></h3>
+            </a>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="brain-1"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+              fill="#000"
+            >
+              <path
+                d="M317-160q-8 0-15-4t-11-11l-84-150h71l42 80h90v-30h-72l-42-80H191l-63-110q-2-4-3-7.5t-1-7.5q0-2 4-15l63-110h105l42-80h72v-30h-90l-42 80h-71l84-150q4-7 11-11t15-4h118q13 0 21.5 8.5T465-770v175h-85l-30 30h115v130h-98l-39-80h-98l-30 30h108l40 80h117v215q0 13-8.5 21.5T435-160H317Zm208 0q-13 0-21.5-8.5T495-190v-215h117l40-80h108l-30-30h-98l-39 80h-98v-130h115l-30-30h-85v-175q0-13 8.5-21.5T525-800h118q8 0 15 4t11 11l84 150h-71l-42-80h-90v30h72l42 80h105l63 110q2 4 3 7.5t1 7.5q0 2-4 15l-63 110H664l-42 80h-72v30h90l42-80h71l-84 150q-4 7-11 11t-15 4H525Z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="brain-2"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+              fill="#808080"
+            >
+              <path
+                d="M317-160q-8 0-15-4t-11-11l-84-150h71l42 80h90v-30h-72l-42-80H191l-63-110q-2-4-3-7.5t-1-7.5q0-2 4-15l63-110h105l42-80h72v-30h-90l-42 80h-71l84-150q4-7 11-11t15-4h118q13 0 21.5 8.5T465-770v175h-85l-30 30h115v130h-98l-39-80h-98l-30 30h108l40 80h117v215q0 13-8.5 21.5T435-160H317Zm208 0q-13 0-21.5-8.5T495-190v-215h117l40-80h108l-30-30h-98l-39 80h-98v-130h115l-30-30h-85v-175q0-13 8.5-21.5T525-800h118q8 0 15 4t11 11l84 150h-71l-42-80h-90v30h72l42 80h105l63 110q2 4 3 7.5t1 7.5q0 2-4 15l-63 110H664l-42 80h-72v30h90l42-80h71l-84 150q-4 7-11 11t-15 4H525Z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="brain-3"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+              fill="#808080"
+            >
+              <path
+                d="M317-160q-8 0-15-4t-11-11l-84-150h71l42 80h90v-30h-72l-42-80H191l-63-110q-2-4-3-7.5t-1-7.5q0-2 4-15l63-110h105l42-80h72v-30h-90l-42 80h-71l84-150q4-7 11-11t15-4h118q13 0 21.5 8.5T465-770v175h-85l-30 30h115v130h-98l-39-80h-98l-30 30h108l40 80h117v215q0 13-8.5 21.5T435-160H317Zm208 0q-13 0-21.5-8.5T495-190v-215h117l40-80h108l-30-30h-98l-39 80h-98v-130h115l-30-30h-85v-175q0-13 8.5-21.5T525-800h118q8 0 15 4t11 11l84 150h-71l-42-80h-90v30h72l42 80h105l63 110q2 4 3 7.5t1 7.5q0 2-4 15l-63 110H664l-42 80h-72v30h90l42-80h71l-84 150q-4 7-11 11t-15 4H525Z"
+              />
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="d-flex pt-3 justify-content-between align-items-center">
+              <div>
+                <a class="remove-underline text-color article_link" href="">
+                  <button class="btn btn-main">
+                    Read more
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#000000"
+                      stroke-width="1"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="currentColor" d="M20 12l-10 0" />
+                      <path stroke="currentColor" d="M20 12l-4 4" />
+                      <path stroke="currentColor" d="M20 12l-4 -4" />
+                    </svg>
+                  </button>
+                </a>
+              </div>
+              <div>
+                <button class="btn bookmarkBtn">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    stroke="#000000"
+                    stroke-width="1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
     </main>
 
     <!---------------------------------------------->
@@ -80,5 +162,6 @@
 
     <!-- Link to scripts of your own -->
     <script type="module" src="./src/app.js"></script>
+    <script type="module" src="./src/index.js"></script>
   </body>
 </html>

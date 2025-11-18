@@ -28,6 +28,7 @@ function initAuthUI() {
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
     const redirectUrl = 'index.html';
+    const params = new URLSearchParams(document.location.search);
 
     // --- Helper Functions ---
     // Toggle element visibility
@@ -35,6 +36,8 @@ function initAuthUI() {
         el.classList.toggle('d-none', !visible);
     }
 
+    let defaultView = params.get("view")
+    console.log(defaultView)
     // Show error message with accessibility and auto-hide
     let errorTimeout;
     function showError(msg) {
@@ -49,6 +52,13 @@ function initAuthUI() {
         alertElement.classList.add('d-none');
         alertElement.textContent = '';
         clearTimeout(errorTimeout);
+    }
+
+    if (defaultView == "signup") {
+        hideError();
+        setVisible(loginView, false);
+        setVisible(signupView, true);
+        signupView?.querySelector('input')?.focus();
     }
 
     // Enable/disable submit button for forms
