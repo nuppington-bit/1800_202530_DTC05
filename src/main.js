@@ -25,21 +25,21 @@ function showUsersBookmarks() {
 }
 function addBookmark() {
   onAuthReady(async (user) => {
-    if(!user) {
+    if (!user) {
       location.href = "index.html";
       return;
     }
     const articlesContainer = document.querySelector("#articles_go_here");
-  
+
     articlesContainer.addEventListener("click", async (event) => {
-      
+
       const btn = event.target.closest(".bookmarkBtn");
       if (!btn) return;
-  
+
       const articleId = btn.dataset.articleId;
-  
+
       btn.classList.toggle("clicked");
-  
+
       const bookmarkRef = doc(db, "users", user.uid, "bookmarks", articleId);
       if (btn.classList.contains("clicked")) {
         await setDoc(bookmarkRef, { articleId });
@@ -49,6 +49,15 @@ function addBookmark() {
     });
   })
 }
+
+function addFilterButton() {
+  const navbarToggleButton = document.getElementById("navbarToggleButton");
+  let filterToggleButton = document.createElement("div");
+  filterToggleButton.innerHTML = `<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterSidebar"><span class="material-symbols-outlined">filter_alt</span></button>`;
+  filterToggleButton = filterToggleButton.firstElementChild;
+  navbarToggleButton.parentNode.insertBefore(filterToggleButton, navbarToggleButton);
+}
+
 async function displayArticleCardsDynamically() {
   onAuthReady(async (user) => {
     if (!user) {
@@ -74,7 +83,7 @@ async function displayArticleCardsDynamically() {
       const querySnapshot = await getDocs(articlesCollectionRef);
       querySnapshot.forEach(async (docSnap) => {
         let newcard = cardTemplate.content.cloneNode(true);
-        const article = docSnap.data(); 
+        const article = docSnap.data();
         console.log(article);
         if (article.level + 1 > 1) {
           newcard.querySelector("#brain-2").setAttribute("fill", "#000");
@@ -110,5 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
   addBookmark();
 })
 
+addFilterButton();
 displayArticleCardsDynamically();
 

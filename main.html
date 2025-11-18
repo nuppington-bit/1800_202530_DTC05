@@ -17,14 +17,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&icon_names=network_intelligence" />
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=filter_alt,network_intelligence" />
   <script type="module" src="./src/components/site-navbar.js"></script>
 </head>
 
 <body style="background-color: white !important">
   <site-navbar></site-navbar>
   <main class="d-flex flex-row">
-    <div id="articles_go_here"></div>
+    <div id="articles_go_here" class="float-left"></div>
+    <div class="offcanvas-md offcanvas-start d-flex flex-column flex-shrink-0 p-3 bg-light float-right"
+      id="filterSidebar" style="width: 280px;">
+      <span class="fs-4 offcanvas-title">Sidebar</span>
+      <hr>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Profile</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Settings</a></li>
+      </ul>
+    </div>
     <template id="article_card_template">
       <div class="card mx-auto mt-5 max-w-md" style="width: 75%">
         <div class="card-header">
@@ -75,12 +85,7 @@
         </div>
       </div>
     </template>
-    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <span class="fs-4">Sidebar</span>
-      </a>
-      <hr>
-    </div>
+
   </main>
 
   <script type="module" src="./src/app.js"></script>

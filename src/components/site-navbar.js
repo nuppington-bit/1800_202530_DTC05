@@ -26,7 +26,7 @@ class SiteNavbar extends HTMLElement {
                         <div id="mobileAuthControls" class="auth-controls d-flex align-items-center gap-2 my-2 my-lg-0">
                             <!-- populated by JS -->
                         </div>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" id="navbarToggleButton" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         </div>
