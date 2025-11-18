@@ -1,62 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>My BCIT Project</title>
+    <meta name="comp1800 template" content="My 1800 App" />
 
-<head>
-  <title>My BCIT Project</title>
-  <meta name="comp1800 template" content="My 1800 App" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Other libraries go here -->
 
-  <!-- Other libraries go here -->
+    <!-- Link to styles of your own -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script type="module" src="/src/components/site-navbar.js"></script>
+  </head>
 
-  <!-- Link to styles of your own -->
-  <link rel="stylesheet" href="./styles/style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <script type="module" src="/src/components/site-navbar.js"></script>
-</head>
-
-<body>
-  <site-navbar></site-navbar>
-  <main>
-    <div class="px-4 py-5 my-5 text-center">
-      <svg xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 -960 960 960" width="100px" fill="#86C66F">
-        <path
-          d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q97-30 162-118.5T718-480H480v-315l-240 90v207q0 7 2 18h238v316Z" />
-      </svg>
-      <h1 class="display-5 fw-bold text-body-emphasis">WebSafe</h1>
-      <div class="col-lg-6 mx-auto">
-        <h3 class="lead mb-4 fs-4">
-          WebSafe is an educational app that helps users learn how to keep
-          themselves safe online. WebSafety provides tests and resources that
-          provide users with a better understanding of their online safety
-          habits and possible threats.
-        </h3>
+  <body>
+    <site-navbar></site-navbar>
+    <main>
+      <div class="px-4 py-5 my-5 text-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="100px"
+          viewBox="0 -960 960 960"
+          width="100px"
+          fill="#86C66F"
+        >
+          <path
+            d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q97-30 162-118.5T718-480H480v-315l-240 90v207q0 7 2 18h238v316Z"
+          />
+        </svg>
+        <h1 class="display-5 fw-bold text-body-emphasis">WebSafe</h1>
+        <div class="col-lg-6 mx-auto">
+          <h3 class="lead mb-4 fs-4">
+            WebSafe is an educational app that helps users learn how to keep
+            themselves safe online. WebSafety provides tests and resources that
+            provide users with a better understanding of their online safety
+            habits and possible threats.
+          </h3>
+        </div>
       </div>
-    </div>
-    <div class="mx-auto w-50 d-flex align-items-center justify-content-center" id="loginSignupSection">
-      <a href="/login.html">
-        <button class="btn-main btn">Log in</button>
-      </a>
-      <p class="px-4 my-auto fs-4">or</p>
-      <a href="/login.html?view=signup">
-        <button class="btn btn-info">
-          Sign up
-        </button>
-      </a>
-    </div>
-  </main>
+      <div
+        class="mx-auto w-50 d-flex align-items-center justify-content-center"
+        id="loginSignupSection"
+      >
+        <a href="/login.html">
+          <button class="btn-main btn">Log in</button>
+        </a>
+        <p class="px-4 my-auto fs-4">or</p>
+        <a href="/login.html?view=signup">
+          <button class="btn btn-info">Sign up</button>
+        </a>
+      </div>
+      <div class="d-none" id="bookmarksGoHere">
+        <h1 class="w-75 mx-auto">My BookMarks</h1>
+        <hr class="w-75 mx-auto" />
+      </div>
+      <template id="bookmarkTemplate">
+        <div class="card mx-auto mt-5 max-w-md" style="width: 75%">
+          <div class="card-header">
+            <a
+              class="show-underline-hover text-body article_link_title"
+              href="#"
+            >
+              <h3 class="article_name"></h3>
+            </a>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="brain-1"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+              fill="#000"
+            >
+              <path
+                d="M317-160q-8 0-15-4t-11-11l-84-150h71l42 80h90v-30h-72l-42-80H191l-63-110q-2-4-3-7.5t-1-7.5q0-2 4-15l63-110h105l42-80h72v-30h-90l-42 80h-71l84-150q4-7 11-11t15-4h118q13 0 21.5 8.5T465-770v175h-85l-30 30h115v130h-98l-39-80h-98l-30 30h108l40 80h117v215q0 13-8.5 21.5T435-160H317Zm208 0q-13 0-21.5-8.5T495-190v-215h117l40-80h108l-30-30h-98l-39 80h-98v-130h115l-30-30h-85v-175q0-13 8.5-21.5T525-800h118q8 0 15 4t11 11l84 150h-71l-42-80h-90v30h72l42 80h105l63 110q2 4 3 7.5t1 7.5q0 2-4 15l-63 110H664l-42 80h-72v30h90l42-80h71l-84 150q-4 7-11 11t-15 4H525Z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="brain-2"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+              fill="#808080"
+            >
+              <path
+                d="M317-160q-8 0-15-4t-11-11l-84-150h71l42 80h90v-30h-72l-42-80H191l-63-110q-2-4-3-7.5t-1-7.5q0-2 4-15l63-110h105l42-80h72v-30h-90l-42 80h-71l84-150q4-7 11-11t15-4h118q13 0 21.5 8.5T465-770v175h-85l-30 30h115v130h-98l-39-80h-98l-30 30h108l40 80h117v215q0 13-8.5 21.5T435-160H317Zm208 0q-13 0-21.5-8.5T495-190v-215h117l40-80h108l-30-30h-98l-39 80h-98v-130h115l-30-30h-85v-175q0-13 8.5-21.5T525-800h118q8 0 15 4t11 11l84 150h-71l-42-80h-90v30h72l42 80h105l63 110q2 4 3 7.5t1 7.5q0 2-4 15l-63 110H664l-42 80h-72v30h90l42-80h71l-84 150q-4 7-11 11t-15 4H525Z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="brain-3"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+              fill="#808080"
+            >
+              <path
+                d="M317-160q-8 0-15-4t-11-11l-84-150h71l42 80h90v-30h-72l-42-80H191l-63-110q-2-4-3-7.5t-1-7.5q0-2 4-15l63-110h105l42-80h72v-30h-90l-42 80h-71l84-150q4-7 11-11t15-4h118q13 0 21.5 8.5T465-770v175h-85l-30 30h115v130h-98l-39-80h-98l-30 30h108l40 80h117v215q0 13-8.5 21.5T435-160H317Zm208 0q-13 0-21.5-8.5T495-190v-215h117l40-80h108l-30-30h-98l-39 80h-98v-130h115l-30-30h-85v-175q0-13 8.5-21.5T525-800h118q8 0 15 4t11 11l84 150h-71l-42-80h-90v30h72l42 80h105l63 110q2 4 3 7.5t1 7.5q0 2-4 15l-63 110H664l-42 80h-72v30h90l42-80h71l-84 150q-4 7-11 11t-15 4H525Z"
+              />
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="d-flex pt-3 justify-content-between align-items-center">
+              <div>
+                <a class="remove-underline text-color article_link" href="">
+                  <button class="btn btn-main">
+                    Read more
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#000000"
+                      stroke-width="1"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="currentColor" d="M20 12l-10 0" />
+                      <path stroke="currentColor" d="M20 12l-4 4" />
+                      <path stroke="currentColor" d="M20 12l-4 -4" />
+                    </svg>
+                  </button>
+                </a>
+              </div>
+              <div>
+                <button class="btn bookmarkBtn">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    stroke="#000000"
+                    stroke-width="1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </main>
 
-  <!---------------------------------------------->
-  <!-- Your own JavaScript functions go here    -->
-  <!---------------------------------------------->
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
 
-  <!-- Link to scripts of your own -->
-  <script type="module" src="./src/app.js"></script>
-  <script type="module" src="./src/index.js"></script>
-</body>
-
+    <!-- Link to scripts of your own -->
+    <script type="module" src="./src/app.js"></script>
+    <script type="module" src="./src/index.js"></script>
+  </body>
 </html>

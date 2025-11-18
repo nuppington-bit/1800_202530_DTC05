@@ -15,20 +15,56 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-function showUsersBookmarks() {
+function addRating() {
   onAuthReady(async (user) => {
     if (!user) {
       location.href = "index.html";
       return;
     }
+
+    const articlesContainer = document.querySelector("#articles_go_here");
+
+    articlesContainer.addEventListener("click", async (event) => {
+      const articleCard = event.target.closest(".card");
+
+      const thumbsUpBtn = articleCard.querySelector(".thumbsUpBtn");
+      const thumbsDownBtn = articleCard.querySelector(".thumbsDownBtn");
+
+      let userRating = null;
+      if (thumbsUpBtn.classList.contains("clicked")) userRating = "up";
+      if (thumbsDownBtn.classList.contains("clicked")) userRating = "down";
+
+      const clickedUp = event.target.closest(".thumbsUpBtn");
+      const clickedDown = event.target.closest(".thumbsDownBtn");
+
+      if (clickedUp) {
+        if (userRating === "up") {
+          thumbsUpBtn.classList.remove("clicked");
+        } else {
+          thumbsUpBtn.classList.add("clicked");
+          thumbsDownBtn.classList.remove("clicked");
+        }
+      }
+
+      if (clickedDown) {
+        if (userRating === "down") {
+          thumbsDownBtn.classList.remove("clicked");
+        } else {
+          thumbsDownBtn.classList.add("clicked");
+          thumbsUpBtn.classList.remove("clicked");
+        }
+      }
+    });
   });
 }
+
 function addBookmark() {
   onAuthReady(async (user) => {
     if (!user) {
       location.href = "index.html";
       return;
     }
+
     const articlesContainer = document.querySelector("#articles_go_here");
 
     articlesContainer.addEventListener("click", async (event) => {
@@ -47,7 +83,7 @@ function addBookmark() {
         await deleteDoc(bookmarkRef);
       }
     });
-  })
+  });
 }
 
 function addFilterButton() {
@@ -115,10 +151,10 @@ async function displayArticleCardsDynamically() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   addBookmark();
-})
+  addRating();
+});
 
 addFilterButton();
 displayArticleCardsDynamically();
-
