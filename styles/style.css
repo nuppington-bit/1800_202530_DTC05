@@ -4,7 +4,6 @@
 * (Secondary): #86C66F      (canvas background)
 * (Accent):    #86C66F
 */
-
 .navbar-dark .navbar-brand,
 .navbar-dark,
 .navbar-nav .nav-link {
@@ -42,6 +41,16 @@
   background-color: #493165 !important;
   /* Dark green for primary button background */
   transition: background-color 0.5s ease !important;
+}
+
+.btn-quiz {
+  color: #e8e9f0 !important;
+  background-color: #5F62B1 !important;
+}
+
+.navbar-toggler {
+  border-color: #fff !important;
+  width: 56px !important;
 }
 
 .btn-main:hover {
@@ -97,10 +106,12 @@ body {
   transition: fill 0.5s ease;
   fill: #000;
 }
+
 .ratingBorder {
   border: 1px solid black;
   border-radius: 16px;
 }
+
 .thumbsUpBtn svg {
   transition: fill 0.5s ease;
   fill: #fff;
@@ -112,6 +123,7 @@ body {
   fill: #000;
   stroke: white;
 }
+
 .thumbsDownBtn svg {
   transition: fill 0.5s ease;
   fill: #fff;

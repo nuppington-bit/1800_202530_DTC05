@@ -159,6 +159,7 @@ const question = [
 const questionElement = document.getElementById("question");
 const answerButton = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-button");
+const confirmButton = document.getElementById("confirm-button");
 const homeButton = document.getElementById("home-button")
 
 let currentQuestionindex = 0;
@@ -167,6 +168,7 @@ function startQuiz() {
   currentQuestionindex = 0;
   score = 0;
   nextButton.innerHTML = "Next";
+  confirmButton.innerHTML = "Confirm";
   showQuestion();
 }
 
@@ -204,7 +206,7 @@ function showQuestion() {
   currentQuestion.answer.forEach((answer) => {
     const button = document.createElement("button");
     button.innerHTML = answer.text;
-    button.classList.add("btn");
+    button.classList.add("btn", "btn-quiz", "w-100", "mt-2", "py-3");
     answerButton.appendChild(button);
     if (answer.correct) {
       button.dataset.correct = answer.correct;
@@ -216,6 +218,7 @@ function showQuestion() {
 function resetState() {
   homeButton.style.display = "none"
   nextButton.style.display = "none";
+  confirmButton.style.display = "none";
   while (answerButton.firstChild) {
     answerButton.removeChild(answerButton.firstChild);
   }
@@ -225,17 +228,21 @@ function selectAnswer(e) {
   const isCorrect = selectedBtn.dataset.correct === "true";
   if (isCorrect) {
     selectedBtn.classList.add("correct");
+    selectedBtn.classList.remove("btn-quiz")
     score++;
   } else {
     selectedBtn.classList.add("incorrect");
+    selectedBtn.classList.remove("btn-quiz")
   }
   Array.from(answerButton.children).forEach((button) => {
     if (button.dataset.correct === "true") {
       button.classList.add("correct");
+      button.classList.remove("btn-quiz")
     }
     button.disabled = true;
   });
   nextButton.style.display = "block";
+  // confirmButton.style.display = "block";
 }
 
 function showScore() {
@@ -258,6 +265,7 @@ function showScore() {
   saveKnowledgeLevel(level, score);
   nextButton.innerHTML = "Play Again";
   nextButton.style.display = "block";
+  // confirmButton.style.display = "block";
   homeButton.style.display = "block";
 }
 
@@ -277,5 +285,9 @@ nextButton.addEventListener("click", () => {
     startQuiz();
   }
 });
+
+confirmButton.addEventListener("click", () => {
+  selectAnswer()
+})
 
 startQuiz();

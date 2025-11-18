@@ -72,14 +72,20 @@ class SiteNavbar extends HTMLElement {
             // Remove existing "Profile" link if present (avoid duplicates)
             const existingProfile = navList?.querySelector("#profileLink");
             if (existingProfile) existingProfile.remove();
+            const existingKnowledgeLink = navList?.querySelector("#knowledgeLink");
+            if (existingKnowledgeLink) existingKnowledgeLink.remove();
 
             if (user) {
                 // 1️⃣ Add Profile item to menu
                 if (navList) {
                     const profileItem = document.createElement("li");
+                    const knowledgeItem = document.createElement("li");
                     profileItem.classList.add("nav-item");
+                    knowledgeItem.classList.add("nav-item");
                     profileItem.innerHTML = `<a class="nav-link show-underline-hover" id="profileLink" href="/profile.html">Profile</a>`;
+                    knowledgeItem.innerHTML = `<a class="nav-link show-underline-hover" id="knowledgeLink" href="/final-knowledge-level-test.html">Knowledge Test</a>`;
                     navList.appendChild(profileItem);
+                    navList.appendChild(knowledgeItem);
                 }
 
                 // 2️⃣ Show logout button
