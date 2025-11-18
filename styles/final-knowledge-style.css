@@ -76,3 +76,27 @@ body{
   color: black;
   font: bold;
 }
+
+#home-button {
+  background: #86C66F;
+  color:#fff;
+  font-weight: 500;
+  width: 150px;
+  border: 0;
+  padding: 10px;
+  margin: 20px auto 0;
+  border-radius: 4px;
+  cursor: pointer;
+  display: none;
+}
+
+#last-button {
+  justify-content: center;
+  align-items:center;
+  display:flex;
+  flex-direction:row;
+}
+
+#anchor {
+  text-decoration:none;
+}
