@@ -192,16 +192,16 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
                 </button>
               </div>
             </div>
-            <div class="">
+            <div>
               <a class="remove-underline text-color article_link" href="" target="_blank">
-                <button class="btn btn-main">
-                  Read more
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                <button class="btn btn-main d-flex align-middle py-2" aria-label="Opens in new tab">
+                  Read more<span class="material-symbols-outlined ps-2 my-auto">open_in_new</span>
+                  <!-- <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                     stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="currentColor" d="M20 12l-10 0" />
                     <path stroke="currentColor" d="M20 12l-4 4" />
                     <path stroke="currentColor" d="M20 12l-4 -4" />
-                  </svg>
+                  </svg> -->
                 </button>
               </a>
             </div>
@@ -269,14 +269,14 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
             </div>
             <div class="">
               <a class="remove-underline text-color article_link" href="" target="_blank">
-                <button class="btn btn-main">
+                <button class="btn btn-main d-flex align-middle py-2">
                   Read more
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                  <!-- <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                     stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="currentColor" d="M20 12l-10 0" />
                     <path stroke="currentColor" d="M20 12l-4 4" />
                     <path stroke="currentColor" d="M20 12l-4 -4" />
-                  </svg>
+                  </svg> -->
                 </button>
               </a>
             </div>

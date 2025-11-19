@@ -71,8 +71,8 @@ class SiteNavbar extends HTMLElement {
 
             // Remove existing "Profile" link if present (avoid duplicates)
             const existingProfile = navList?.querySelector("#profileLink");
-            if (existingProfile) existingProfile.remove();
             const existingKnowledgeLink = navList?.querySelector("#knowledgeLink");
+            if (existingProfile) existingProfile.remove();
             if (existingKnowledgeLink) existingKnowledgeLink.remove();
 
             if (user) {
