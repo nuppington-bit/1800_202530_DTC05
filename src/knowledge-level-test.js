@@ -214,6 +214,7 @@ function showQuestion() {
       button.dataset.correct = answer.correct;
     }
     button.addEventListener("click", () => {
+      button.classList.add("select")
       selectedBtn = button;
       confirmButton.style.display = "block"
     });
@@ -236,16 +237,16 @@ function confirmAnswer() {
 
   if (isCorrect) {
     selectedBtn.classList.add("correct",);
-    selectedBtn.classList.remove("btn-quiz")
+    selectedBtn.classList.remove("btn-quiz", "select")
     score++;
   } else {
     selectedBtn.classList.add("incorrect",);
-    selectedBtn.classList.remove("btn-quiz")
+    selectedBtn.classList.remove("btn-quiz", "select")
   }
   Array.from(answerButton.children).forEach((button) => {
     if (button.dataset.correct === "true") {
       button.classList.add("correct", );
-      button.classList.remove("btn-quiz")
+      button.classList.remove("btn-quiz", "select")
     }
     button.disabled = true;
   });
