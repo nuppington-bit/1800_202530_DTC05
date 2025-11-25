@@ -232,21 +232,19 @@ function resetState() {
 }
 
 function confirmAnswer() {
-  if (!selectedBtn) return;
-
   const isCorrect = selectedBtn.dataset.correct === "true";
 
   if (isCorrect) {
-    selectedBtn.classList.add("correct");
+    selectedBtn.classList.add("correct",);
     selectedBtn.classList.remove("btn-quiz")
     score++;
   } else {
-    selectedBtn.classList.add("incorrect");
+    selectedBtn.classList.add("incorrect",);
     selectedBtn.classList.remove("btn-quiz")
   }
   Array.from(answerButton.children).forEach((button) => {
     if (button.dataset.correct === "true") {
-      button.classList.add("correct");
+      button.classList.add("correct", );
       button.classList.remove("btn-quiz")
     }
     button.disabled = true;
