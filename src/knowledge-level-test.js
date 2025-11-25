@@ -164,6 +164,8 @@ const homeButton = document.getElementById("home-button")
 
 let currentQuestionindex = 0;
 let score = 0;
+let selectedBtn = null;
+
 function startQuiz() {
   currentQuestionindex = 0;
   score = 0;
@@ -211,7 +213,10 @@ function showQuestion() {
     if (answer.correct) {
       button.dataset.correct = answer.correct;
     }
-    button.addEventListener("click", selectAnswer);
+    button.addEventListener("click", () => {
+      selectedBtn = button;
+      confirmButton.style.display = "block"
+    });
   });
 }
 
@@ -219,13 +224,18 @@ function resetState() {
   homeButton.style.display = "none"
   nextButton.style.display = "none";
   confirmButton.style.display = "none";
+  selectedBtn = null;
+
   while (answerButton.firstChild) {
     answerButton.removeChild(answerButton.firstChild);
   }
 }
-function selectAnswer(e) {
-  const selectedBtn = e.target;
+
+function confirmAnswer() {
+  if (!selectedBtn) return;
+
   const isCorrect = selectedBtn.dataset.correct === "true";
+
   if (isCorrect) {
     selectedBtn.classList.add("correct");
     selectedBtn.classList.remove("btn-quiz")
@@ -242,7 +252,7 @@ function selectAnswer(e) {
     button.disabled = true;
   });
   nextButton.style.display = "block";
-  // confirmButton.style.display = "block";
+  confirmButton.style.display = "none"
 }
 
 function showScore() {
@@ -265,7 +275,6 @@ function showScore() {
   saveKnowledgeLevel(level, score);
   nextButton.innerHTML = "Play Again";
   nextButton.style.display = "block";
-  // confirmButton.style.display = "block";
   homeButton.style.display = "block";
 }
 
@@ -287,7 +296,7 @@ nextButton.addEventListener("click", () => {
 });
 
 confirmButton.addEventListener("click", () => {
-  selectAnswer()
+  confirmAnswer()
 })
 
 startQuiz();
