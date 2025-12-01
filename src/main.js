@@ -13,8 +13,10 @@ import {
   getDoc,
   setDoc,
   deleteDoc,
+  updateDoc,
+  count,
+  getCountFromServer,
 } from "firebase/firestore";
-
 
 function addRating() {
   onAuthReady(async (user) => {
@@ -27,6 +29,7 @@ function addRating() {
 
     articlesContainer.addEventListener("click", async (event) => {
       const articleCard = event.target.closest(".card");
+      const articleId = articleCard.dataset.articleId;
 
       const thumbsUpBtn = articleCard.querySelector(".thumbsUpBtn");
       const thumbsDownBtn = articleCard.querySelector(".thumbsDownBtn");
@@ -38,21 +41,64 @@ function addRating() {
       const clickedUp = event.target.closest(".thumbsUpBtn");
       const clickedDown = event.target.closest(".thumbsDownBtn");
 
+      const ratingRef = doc(db, "articles", articleId, "ratings", user.uid);
+      let upVoteCount = articleCard.querySelector(".upVote");
+      let downVoteCount = articleCard.querySelector(".downVote");
       if (clickedUp) {
         if (userRating === "up") {
           thumbsUpBtn.classList.remove("clicked");
+          await updateDoc(ratingRef, {
+            rating: 0,
+          });
+          articleCard.querySelector(".upVote").textContent =
+            Number(upVoteCount.textContent) - 1;
+        } else if (userRating === "down") {
+          thumbsUpBtn.classList.add("clicked");
+          thumbsDownBtn.classList.remove("clicked");
+          await setDoc(ratingRef, {
+            rating: 1,
+          });
+          articleCard.querySelector(".downVote").textContent =
+            Number(downVoteCount.textContent) - 1;
+          articleCard.querySelector(".upVote").textContent =
+            Number(upVoteCount.textContent) + 1;
         } else {
           thumbsUpBtn.classList.add("clicked");
           thumbsDownBtn.classList.remove("clicked");
+          await setDoc(ratingRef, {
+            rating: 1,
+          });
+          articleCard.querySelector(".upVote").textContent =
+            Number(upVoteCount.textContent) + 1;
         }
       }
 
       if (clickedDown) {
         if (userRating === "down") {
           thumbsDownBtn.classList.remove("clicked");
+          await updateDoc(ratingRef, {
+            rating: 0,
+          });
+          articleCard.querySelector(".downVote").textContent =
+            Number(downVoteCount.textContent) - 1;
+        } else if (userRating === "up") {
+          thumbsDownBtn.classList.add("clicked");
+          thumbsUpBtn.classList.remove("clicked");
+          await setDoc(ratingRef, {
+            rating: -1,
+          });
+          articleCard.querySelector(".upVote").textContent =
+            Number(upVoteCount.textContent) - 1;
+          articleCard.querySelector(".downVote").textContent =
+            Number(downVoteCount.textContent) + 1;
         } else {
           thumbsDownBtn.classList.add("clicked");
           thumbsUpBtn.classList.remove("clicked");
+          await setDoc(ratingRef, {
+            rating: -1,
+          });
+          articleCard.querySelector(".downVote").textContent =
+            Number(downVoteCount.textContent) + 1;
         }
       }
     });
@@ -69,7 +115,6 @@ function addBookmark() {
     const articlesContainer = document.querySelector("#articles_go_here");
 
     articlesContainer.addEventListener("click", async (event) => {
-
       const btn = event.target.closest(".bookmarkBtn");
       if (!btn) return;
 
@@ -92,11 +137,14 @@ function addFilterButton() {
   let filterToggleButton = document.createElement("div");
   filterToggleButton.innerHTML = `<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterSidebar"><span class="material-symbols-outlined">filter_alt</span></button>`;
   filterToggleButton = filterToggleButton.firstElementChild;
-  navbarToggleButton.parentNode.insertBefore(filterToggleButton, navbarToggleButton);
+  navbarToggleButton.parentNode.insertBefore(
+    filterToggleButton,
+    navbarToggleButton
+  );
 }
 
 async function getQueryFilter(first_fetch, user) {
-  let knowledgeLevelSelector = document.getElementById("knowledge-level")
+  let knowledgeLevelSelector = document.getElementById("knowledge-level");
   let userKnowledgeLevel = 0;
   let knowledgeFilter = 0;
   const usersCollectionRef = doc(db, "users", user.uid);
@@ -104,16 +152,23 @@ async function getQueryFilter(first_fetch, user) {
     const querySnapshot = await getDoc(usersCollectionRef);
     if (first_fetch) {
       userKnowledgeLevel = querySnapshot.data().knowledgeLevel;
-      knowledgeFilter = userKnowledgeLevel
-      knowledgeLevelSelector.value = userKnowledgeLevel
-      knowledgeLevelSelector.options[knowledgeLevelSelector.selectedIndex].text = knowledgeLevelSelector.options[knowledgeLevelSelector.selectedIndex].text + " (Default)"
+      knowledgeFilter = userKnowledgeLevel;
+      knowledgeLevelSelector.value = userKnowledgeLevel;
+      knowledgeLevelSelector.options[
+        knowledgeLevelSelector.selectedIndex
+      ].text =
+        knowledgeLevelSelector.options[knowledgeLevelSelector.selectedIndex]
+          .text + " (Default)";
     } else {
-      knowledgeFilter = parseInt(knowledgeLevelSelector.options[knowledgeLevelSelector.selectedIndex].value)
+      knowledgeFilter = parseInt(
+        knowledgeLevelSelector.options[knowledgeLevelSelector.selectedIndex]
+          .value
+      );
     }
   } catch (error) {
     console.log(error);
   }
-  return knowledgeFilter
+  return knowledgeFilter;
 }
 
 async function displayArticleCardsDynamically(first_fetch) {
@@ -178,7 +233,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
                     <path
                       d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
                   </svg>
-                  <p class="py-0 my-auto ps-2">0</p>
+                  <p class="py-0 my-auto ps-2 upVote">0</p>
                 </button>
               </div>
               <div class="d-flex align-items-center justify-content-center">
@@ -188,7 +243,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
                     <path
                       d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3" />
                   </svg>
-                  <p class="py-0 my-auto ps-2">0</p>
+                  <p class="py-0 my-auto ps-2 downVote">0</p>
                 </button>
               </div>
             </div>
@@ -253,7 +308,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
                     <path
                       d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
                   </svg>
-                  <p class="py-0 my-auto ps-2">0</p>
+                  <p class="py-0 my-auto ps-2 upVote">0</p>
                 </button>
               </div>
               <div class="d-flex align-items-center justify-content-center">
@@ -263,7 +318,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
                     <path
                       d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3" />
                   </svg>
-                  <p class="py-0 my-auto ps-2">0</p>
+                  <p class="py-0 my-auto ps-2 downVote">0</p>
                 </button>
               </div>
             </div>
@@ -283,7 +338,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
           </div>
         </div>
       </div>`;
-      let newArticles = document.createElement("div")
+      let newArticles = document.createElement("div");
       querySnapshot.forEach(async function (docSnap, index) {
         let newcard = cardTemplate.content.cloneNode(true);
         const article = docSnap.data();
@@ -300,8 +355,9 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
         newcard.querySelector(".article_link").href = article.link;
         newcard.querySelector(".article_link_title").href = article.link;
         const bookmarkBtn = newcard.querySelector(".bookmarkBtn");
+        const card = newcard.querySelector(".card");
         bookmarkBtn.dataset.articleId = docSnap.id;
-
+        card.dataset.articleId = docSnap.id;
         //checks if the user already has the bookmark in the database
         const bookmarkRef = doc(db, "users", user.uid, "bookmarks", docSnap.id);
         const bookmarkSnapshot = await getDoc(bookmarkRef);
@@ -309,8 +365,33 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
         if (bookmarkSnapshot.exists()) {
           bookmarkBtn.classList.add("clicked");
         }
+        const thumbsUpBtn = newcard.querySelector(".thumbsUpBtn");
+        const thumbsDownBtn = newcard.querySelector(".thumbsDownBtn");
+        const ratingRef = doc(db, "articles", docSnap.id, "ratings", user.uid);
+        const ratingSnapShot = await getDoc(ratingRef);
+
+        // checks if user already has a raiting for the article
+        if (ratingSnapShot.exists()) {
+          const ratingData = ratingSnapShot.data();
+          if (ratingData.rating == 1) {
+            thumbsUpBtn.classList.add("clicked");
+          } else if (ratingData.rating == -1) {
+            thumbsDownBtn.classList.add("clicked");
+          }
+        }
+        const parentRatingRef = doc(db, "articles", docSnap.id);
+        const queryRatingRef = collection(parentRatingRef, "ratings");
+        const upVoteQuery = query(queryRatingRef, where("rating", "==", 1));
+        const downVoteQuery = query(queryRatingRef, where("rating", "==", -1));
+        const upVotesSnap = await getCountFromServer(upVoteQuery);
+        const downVotesSnap = await getCountFromServer(downVoteQuery);
+        newcard.querySelector(".upVote").textContent = upVotesSnap.data().count;
+        newcard.querySelector(".downVote").textContent =
+          downVotesSnap.data().count;
+
         newArticles.appendChild(newcard);
-        document.getElementById("articles_go_here").innerHTML = newArticles.innerHTML
+        document.getElementById("articles_go_here").innerHTML =
+          newArticles.innerHTML;
       });
     } catch (error) {
       console.error("error getting documents", error);
@@ -326,7 +407,9 @@ document.addEventListener("DOMContentLoaded", () => {
 addFilterButton();
 displayArticleCardsDynamically(true);
 
-document.getElementById("filter-form").addEventListener("submit", function (event) {
-  event.preventDefault();
-  displayArticleCardsDynamically(false);
-});
+document
+  .getElementById("filter-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    displayArticleCardsDynamically(false);
+  });
