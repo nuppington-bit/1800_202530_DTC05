@@ -90,12 +90,14 @@ class SiteNavbar extends HTMLElement {
 
                 // 2️⃣ Show logout button
                 updatedAuthControl = `<button class="btn btn-outline-light d-none d-md-inline-block text-nowrap min-w-fit" id="signOutBtn" type="button">Log out</button>`;
-                updatedMobileAuthControl = `<button class="btn btn-outline-light d-md-none text-nowrap min-w-fit" id="signOutBtn" type="button">Log out</button>`;
+                updatedMobileAuthControl = `<button class="btn btn-outline-light d-md-none text-nowrap min-w-fit" id="signOutBtnMobile" type="button">Log out</button>`;
                 authControls.innerHTML = updatedAuthControl;
                 mobileAuthControls.innerHTML = updatedMobileAuthControl;
 
                 const signOutBtn = authControls.querySelector("#signOutBtn");
                 signOutBtn?.addEventListener("click", logoutUser);
+                const signOutBtnMobile = mobileAuthControls.querySelector("#signOutBtnMobile");
+                signOutBtnMobile?.addEventListener("click", logoutUser);
             } else {
                 // Remove Profile if user logs out
                 if (existingProfile) existingProfile.remove();
