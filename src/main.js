@@ -133,7 +133,7 @@ async function displayArticleCardsDynamically(first_fetch) {
     try {
       const querySnapshot = await getDocs(articlesCollectionRef);
       document.getElementById("articles_go_here").innerHTML = `
-      <div class="card mx-auto mt-5 max-w-md" style="width: 75%">
+      <div class="card mx-auto mt-5 max-w-md w-75">
         <div class="card-header d-flex justify-content-between flex-row">
           <div class="d-flex flex-column">
             <a class="show-underline-hover text-body article_link_title" href="#">
@@ -158,7 +158,7 @@ async function displayArticleCardsDynamically(first_fetch) {
             </div>
           </div>
           <div>
-            <button class="btn bookmarkBtn">
+            <button class="btn bookmarkBtn" disabled>
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" stroke="#000000"
                 stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z" />
@@ -168,11 +168,12 @@ async function displayArticleCardsDynamically(first_fetch) {
         </div>
         <div class="card-body">
           <p class="summary_text placeholder">
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupiditate soluta! Pariatur recusandae laudantium quod rerum possimus? Facilis, quod.</p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupiditate soluta! Pariatur
+            recusandae laudantium quod rerum possimus? Facilis, quod.</p>
           <div class="d-flex pt-3 justify-content-between align-items-center">
             <div class="d-flex align-items-center justify-content-center ratingBorder">
               <div class="d-flex align-items-center justify-content-center border-end">
-                <button class="btn thumbsUpBtn d-flex flex-row my-auto align-middle">
+                <button class="btn thumbsUpBtn d-flex flex-row my-auto align-middle" disabled>
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                     stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                     <path
@@ -182,7 +183,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
                 </button>
               </div>
               <div class="d-flex align-items-center justify-content-center">
-                <button class="btn thumbsDownBtn d-flex flex-row my-auto align-middle">
+                <button class="btn thumbsDownBtn d-flex flex-row my-auto align-middle" disabled>
                   <svg xmlns=" http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                     stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                     <path
@@ -192,10 +193,10 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
                 </button>
               </div>
             </div>
-            <div>
+            <div class="">
               <a class="remove-underline text-color article_link" href="" target="_blank">
-                <button class="btn btn-main d-flex align-middle py-2" aria-label="Opens in new tab">
-                  Read more<span class="material-symbols-outlined ps-2 my-auto">open_in_new</span>
+                <button class="btn btn-main d-flex align-middle py-2" disabled>
+                  Read more<span class="material-symbols-outlined ps-2">open_in_new</span>
                   <!-- <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                     stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="currentColor" d="M20 12l-10 0" />
@@ -208,7 +209,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
           </div>
         </div>
       </div>
-      <div class="card mx-auto mt-5 max-w-md" style="width: 75%">
+      <div class="card mx-auto mt-5 max-w-md w-75">
         <div class="card-header d-flex justify-content-between flex-row">
           <div class="d-flex flex-column">
             <a class="show-underline-hover text-body article_link_title" href="#">
@@ -233,7 +234,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
             </div>
           </div>
           <div>
-            <button class="btn bookmarkBtn">
+            <button class="btn bookmarkBtn" disabled>
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" stroke="#000000"
                 stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z" />
@@ -243,11 +244,12 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
         </div>
         <div class="card-body">
           <p class="summary_text placeholder">
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupiditate soluta! Pariatur recusandae laudantium quod rerum possimus? Facilis, quod.</p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupiditate soluta! Pariatur
+            recusandae laudantium quod rerum possimus? Facilis, quod.</p>
           <div class="d-flex pt-3 justify-content-between align-items-center">
             <div class="d-flex align-items-center justify-content-center ratingBorder">
               <div class="d-flex align-items-center justify-content-center border-end">
-                <button class="btn thumbsUpBtn d-flex flex-row my-auto align-middle">
+                <button class="btn thumbsUpBtn d-flex flex-row my-auto align-middle" disabled>
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                     stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                     <path
@@ -257,7 +259,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
                 </button>
               </div>
               <div class="d-flex align-items-center justify-content-center">
-                <button class="btn thumbsDownBtn d-flex flex-row my-auto align-middle">
+                <button class="btn thumbsDownBtn d-flex flex-row my-auto align-middle" disabled>
                   <svg xmlns=" http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                     stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                     <path
@@ -269,8 +271,8 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus cupi
             </div>
             <div class="">
               <a class="remove-underline text-color article_link" href="" target="_blank">
-                <button class="btn btn-main d-flex align-middle py-2">
-                  Read more
+                <button class="btn btn-main d-flex align-middle py-2" disabled>
+                  Read more<span class="material-symbols-outlined ps-2">open_in_new</span>
                   <!-- <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                     stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="currentColor" d="M20 12l-10 0" />
