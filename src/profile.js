@@ -16,7 +16,7 @@ async function saveProfileDetails(name) {
 
     const userRef = doc(db, "users", user.uid);
 
-    // Update the document
+    // Update the user document with the new displayName
     await updateDoc(userRef, {
         displayName: name
     });
@@ -38,7 +38,7 @@ async function saveKnowledgeLevel(level) {
 
     const userRef = doc(db, "users", user.uid);
 
-    // Update the document
+    // Update the user document with the new knowledgeLevel
     await updateDoc(userRef, {
         knowledgeLevel: level
     });
@@ -47,6 +47,7 @@ async function saveKnowledgeLevel(level) {
 
 
 async function showDashboard() {
+    // Get all user related elements
     const usernameElement = document.getElementById("username")
     const usernamePlaceholder = document.getElementById("display-name")
     const knowledgeLevel = document.getElementById("level")
@@ -61,19 +62,21 @@ async function showDashboard() {
             location.href = "index.html";
             return;
         }
+        // Retrieve past test scores from user's history
         const scoresCollectionRef = query(collection(db, "users", user.uid, "testScores"), orderBy("timestamp", "desc"))
         const usersCollectionRef = doc(db, "users", user.uid);
         try {
             const querySnapshot = await getDoc(usersCollectionRef);
             const scoresQuerySnapshot = await getDocs(scoresCollectionRef);
             scoresList.innerHTML = ""
-            scoresQuerySnapshot.forEach(async function (docSnap, index) {
+            scoresQuerySnapshot.forEach(async function (docSnap, index) { // Add previous test scores to list
                 let scoreListItem = document.createElement("li")
                 let score = docSnap.data()
                 scoreListItem.classList.add("list-group-item")
                 scoreListItem.innerHTML = `${new Date(score.timestamp.seconds * 1000).toLocaleDateString('en-US')}: ${score.score.toFixed(2)}%`
                 scoresList.appendChild(scoreListItem)
             });
+            // Populate page with user data
             usernameElement.textContent = querySnapshot.data().displayName;
             usernamePlaceholder.setAttribute("placeholder", querySnapshot.data().displayName)
             knowledgeLevel.textContent = `Knowledge level: ${levels[querySnapshot.data().knowledgeLevel]}`;
@@ -111,13 +114,3 @@ document.getElementById("knowledge-level-form").addEventListener("submit", funct
     console.log("done")
     event.target.reset();
 });
-
-// if (window.history && window.history.pushState) {
-//     document.getElementById("level-modal").on('show.bs.modal', function (e) {
-//         window.history.pushState('forward', null, './#levelModal');
-//     });
-
-//     window.on('popstate', function () {
-//         document.getElementById("level-modal").modal('hide');
-//     });
-// }

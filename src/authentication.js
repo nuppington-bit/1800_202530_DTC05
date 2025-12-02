@@ -14,21 +14,21 @@ export async function loginUser(email, password) {
 }
 
 export async function signupUser(name, email, password) {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password); // Create new user profile
     const user = userCredential.user;
     const userRef = doc(db, "users", user.uid)
-    await setDoc(userRef, {displayName: name, knowledgeLevel: 0, testAverage: 0})
+    await setDoc(userRef, { displayName: name, knowledgeLevel: 0, testAverage: 0 }) // Initialize displayName, knowledgeLevel, and testAverage
     return user;
 }
 
 export async function logoutUser() {
-    await signOut(auth);
+    await signOut(auth); // Sign out user and redirect to index.hrml
     window.location.href = "index.html";
 }
 
 export function checkAuthState() {
     onAuthStateChanged(auth, (user) => {
-        //
+        //used by other things
     });
 }
 
@@ -51,5 +51,5 @@ export function authErrorMessage(error) {
         "auth/network-request-failed": "Network error. Try again.",
     };
 
-    return map[code] || "Something went wrong. Please try again.";
+    return map[code] || "Something went wrong. Please try again."; // Map error codes to explanation string
 }

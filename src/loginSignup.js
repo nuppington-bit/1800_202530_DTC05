@@ -69,7 +69,7 @@ function initAuthUI() {
 
     // --- Event Listeners ---
     // Toggle buttons
-    toSignupBtn?.addEventListener('click', (e) => {
+    toSignupBtn?.addEventListener('click', (e) => { // Switch to signup view
         e.preventDefault();
         hideError();
         setVisible(loginView, false);
@@ -77,7 +77,7 @@ function initAuthUI() {
         signupView?.querySelector('input')?.focus();
     });
 
-    toLoginBtn?.addEventListener('click', (e) => {
+    toLoginBtn?.addEventListener('click', (e) => { // Switch to login view
         e.preventDefault();
         hideError();
         setVisible(signupView, false);

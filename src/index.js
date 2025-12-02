@@ -27,11 +27,9 @@ function addBookmark() {
 
       const bookmarkRef = doc(db, "users", user.uid, "bookmarks", articleId);
       if (btn.classList.contains("clicked")) {
-        await setDoc(bookmarkRef, { articleId });
-        // window.location.reload(); use this if we want to give them a chance to undo.
+        await setDoc(bookmarkRef, { articleId }); // Add bookmark to user's bookmark collection
       } else {
-        await deleteDoc(bookmarkRef);
-        // window.location.reload();
+        await deleteDoc(bookmarkRef); // Remove bookmark
       }
       if (card) card.remove();
     });
@@ -64,14 +62,14 @@ async function setupHome() {
       try {
         const bookmarkSnap = await getDocs(bookmarkCollectionRef);
 
-        bookmarkSnap.forEach(async (docSnap) => {
+        bookmarkSnap.forEach(async (docSnap) => { // Populate bookmarks list with user's bookmarked articles
           const bookmarkId = docSnap.data().articleId;
           const articleRef = doc(db, "articles", bookmarkId);
           const artSnap = await getDoc(articleRef);
           let bookmarkCard = bookmarkTemplate.content.cloneNode(true);
           if (artSnap.exists()) {
             const article = artSnap.data();
-            if (article.level + 1 > 1) {
+            if (article.level + 1 > 1) { // Change brain icon color to represent knowledge level
               bookmarkCard
                 .querySelector("#brain-2")
                 .setAttribute("fill", "#000");
@@ -106,7 +104,7 @@ async function setupHome() {
               .getElementById("bookmarksGoHere")
               .appendChild(bookmarkCard);
           } else {
-            console.log("No Bookmark Found!!!!!");
+            console.log("No Bookmark Found!");
           }
         });
       } catch (error) {

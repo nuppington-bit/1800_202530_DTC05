@@ -4,7 +4,7 @@ import { serverTimestamp } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { onAuthReady } from "./authentication.js";
 
-const question = [
+const question = [ // Questions and answers for knowledge test
   {
     question: "What is the strongest type of password?",
     answer: [
@@ -181,7 +181,7 @@ async function addTestScore(score) {
   const user = auth.currentUser;
   const testScoresRef = collection(db, "users", user.uid, "testScores")
   const testTimestamp = serverTimestamp()
-  await addDoc(testScoresRef, { score: score, timestamp: testTimestamp });
+  await addDoc(testScoresRef, { score: score, timestamp: testTimestamp }); // Add new doc containing test score and timestamp of test completion
 }
 
 async function saveKnowledgeLevel(level, score) {
@@ -216,7 +216,7 @@ function showQuestion() {
   let questionNo = currentQuestionindex + 1;
   questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
-  currentQuestion.answer.forEach((answer) => {
+  currentQuestion.answer.forEach((answer) => { // Create a button for each answer
     const button = document.createElement("button");
     button.innerHTML = answer.text;
     button.classList.add("btn", "btn-quiz", "w-100", "mt-2", "py-3");
@@ -236,6 +236,7 @@ function showQuestion() {
 }
 
 function resetState() {
+  // Reset to default appearance
   homeButton.style.display = "none"
   nextButton.style.display = "none";
   confirmButton.style.display = "none";
@@ -249,7 +250,7 @@ function resetState() {
 function confirmAnswer() {
   const isCorrect = selectedBtn.dataset.correct === "true";
 
-  if (isCorrect) {
+  if (isCorrect) { // Add 1 to score if answer is correct
     selectedBtn.classList.add("correct",);
     selectedBtn.classList.remove("btn-quiz", "select")
     score++;
@@ -273,7 +274,7 @@ function showScore() {
   console.log(score);
   let levelString = "Beginner";
   let level = 0;
-  if (score < 3) {
+  if (score < 3) { // Change level string and level depending on score
     levelString = "Beginner";
     level = 0;
   } else if (3 <= score && score < 6) {
@@ -293,7 +294,7 @@ function showScore() {
 
 function handleNextButton() {
   currentQuestionindex++;
-  if (currentQuestionindex < question.length) {
+  if (currentQuestionindex < question.length) { // If more questions are remaining, show next question, otherwise show score
     showQuestion();
   } else {
     showScore();
@@ -301,7 +302,7 @@ function handleNextButton() {
 }
 
 nextButton.addEventListener("click", () => {
-  if (currentQuestionindex < question.length) {
+  if (currentQuestionindex < question.length) { // If more questions are remaining, call handleNextButton(), otherwise start the quiz
     handleNextButton();
   } else {
     startQuiz();

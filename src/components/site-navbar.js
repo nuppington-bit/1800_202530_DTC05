@@ -76,7 +76,7 @@ class SiteNavbar extends HTMLElement {
             if (existingKnowledgeLink) existingKnowledgeLink.remove();
 
             if (user) {
-                // 1️⃣ Add Profile item to menu
+                // Add Profile item to menu
                 if (navList) {
                     const profileItem = document.createElement("li");
                     const knowledgeItem = document.createElement("li");
@@ -88,7 +88,7 @@ class SiteNavbar extends HTMLElement {
                     navList.appendChild(knowledgeItem);
                 }
 
-                // 2️⃣ Show logout button
+                // Show logout button
                 updatedAuthControl = `<button class="btn btn-outline-light d-none d-md-inline-block text-nowrap min-w-fit" id="signOutBtn" type="button">Log out</button>`;
                 updatedMobileAuthControl = `<button class="btn btn-outline-light d-md-none text-nowrap min-w-fit" id="signOutBtnMobile" type="button">Log out</button>`;
                 authControls.innerHTML = updatedAuthControl;

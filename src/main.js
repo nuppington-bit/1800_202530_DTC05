@@ -44,7 +44,7 @@ function addRating() {
       const ratingRef = doc(db, "articles", articleId, "ratings", user.uid);
       let upVoteCount = articleCard.querySelector(".upVote");
       let downVoteCount = articleCard.querySelector(".downVote");
-      if (clickedUp) {
+      if (clickedUp) { // If the user clicked the Up button, add the correct data to firestore and update HTML
         if (userRating === "up") {
           thumbsUpBtn.classList.remove("clicked");
           await updateDoc(ratingRef, {
@@ -73,7 +73,7 @@ function addRating() {
         }
       }
 
-      if (clickedDown) {
+      if (clickedDown) { // If the user clicked the Down button, add the correct data to firestore and update HTML
         if (userRating === "down") {
           thumbsDownBtn.classList.remove("clicked");
           await updateDoc(ratingRef, {
@@ -114,7 +114,7 @@ function addBookmark() {
 
     const articlesContainer = document.querySelector("#articles_go_here");
 
-    articlesContainer.addEventListener("click", async (event) => {
+    articlesContainer.addEventListener("click", async (event) => { // If bookmark button is clicked, add the correct data to firestore and update HTML
       const btn = event.target.closest(".bookmarkBtn");
       if (!btn) return;
 
@@ -132,7 +132,7 @@ function addBookmark() {
   });
 }
 
-function addFilterButton() {
+function addFilterButton() { // Add the filter toggle button before the navbar toggle button
   const navbarToggleButton = document.getElementById("navbarToggleButton");
   let filterToggleButton = document.createElement("div");
   filterToggleButton.innerHTML = `<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterSidebar"><span class="material-symbols-outlined">filter_alt</span></button>`;
@@ -150,7 +150,7 @@ async function getQueryFilter(first_fetch, user) {
   const usersCollectionRef = doc(db, "users", user.uid);
   try {
     const querySnapshot = await getDoc(usersCollectionRef);
-    if (first_fetch) {
+    if (first_fetch) { // If this is the first fetch, use user knowledge level and set dropdown to defaults, otherwise use dropdown value
       userKnowledgeLevel = querySnapshot.data().knowledgeLevel;
       knowledgeFilter = userKnowledgeLevel;
       knowledgeLevelSelector.value = userKnowledgeLevel;
@@ -187,6 +187,7 @@ async function displayArticleCardsDynamically(first_fetch) {
 
     try {
       const querySnapshot = await getDocs(articlesCollectionRef);
+      // Placeholder bookmarks
       document.getElementById("articles_go_here").innerHTML = `
       <div class="card mx-auto mt-5 max-w-md w-75">
         <div class="card-header d-flex justify-content-between flex-row">
@@ -341,11 +342,11 @@ async function displayArticleCardsDynamically(first_fetch) {
         </div>
       </div>`;
       let newArticles = document.createElement("div");
-      querySnapshot.forEach(async function (docSnap, index) {
+      querySnapshot.forEach(async function (docSnap, index) { // Add an article card for each bookmark
         let newcard = cardTemplate.content.cloneNode(true);
         const article = docSnap.data();
         console.log(article);
-        if (article.level + 1 > 1) {
+        if (article.level + 1 > 1) { // Update brain icon color to represent knowledge level
           newcard.querySelector("#brain-2").setAttribute("fill", "#000");
         }
         if (article.level + 1 > 2) {
@@ -360,7 +361,8 @@ async function displayArticleCardsDynamically(first_fetch) {
         const card = newcard.querySelector(".card");
         bookmarkBtn.dataset.articleId = docSnap.id;
         card.dataset.articleId = docSnap.id;
-        //checks if the user already has the bookmark in the database
+
+        // Check if the user already has the bookmark in the database
         const bookmarkRef = doc(db, "users", user.uid, "bookmarks", docSnap.id);
         const bookmarkSnapshot = await getDoc(bookmarkRef);
 
@@ -372,7 +374,7 @@ async function displayArticleCardsDynamically(first_fetch) {
         const ratingRef = doc(db, "articles", docSnap.id, "ratings", user.uid);
         const ratingSnapShot = await getDoc(ratingRef);
 
-        // checks if user already has a raiting for the article
+        // Check if user already has a raiting for the article
         if (ratingSnapShot.exists()) {
           const ratingData = ratingSnapShot.data();
           if (ratingData.rating == 1) {
@@ -381,6 +383,8 @@ async function displayArticleCardsDynamically(first_fetch) {
             thumbsDownBtn.classList.add("clicked");
           }
         }
+
+        // Search database for all ratings with the corresponding value and display their actual value on the webpage
         const parentRatingRef = doc(db, "articles", docSnap.id);
         const queryRatingRef = collection(parentRatingRef, "ratings");
         const upVoteQuery = query(queryRatingRef, where("rating", "==", 1));
@@ -409,9 +413,7 @@ document.addEventListener("DOMContentLoaded", () => {
 addFilterButton();
 displayArticleCardsDynamically(true);
 
-document
-  .getElementById("filter-form")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-    displayArticleCardsDynamically(false);
-  });
+document.getElementById("filter-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  displayArticleCardsDynamically(false);
+});

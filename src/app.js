@@ -1,6 +1,2 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; // import bootstrap
 import 'bootstrap';
-
-function sayHello() {
-}
-document.addEventListener('DOMContentLoaded', sayHello);
