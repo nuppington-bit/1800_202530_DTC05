@@ -1,5 +1,6 @@
 import { auth, db } from "/src/firebaseConfig.js";
-import { doc, onSnapshot, getDoc, updateDoc } from "firebase/firestore";
+import { doc, collection, onSnapshot, getDoc, updateDoc, addDoc } from "firebase/firestore";
+import { serverTimestamp } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { onAuthReady } from "./authentication.js";
 
@@ -174,6 +175,15 @@ function startQuiz() {
   showQuestion();
 }
 
+async function addTestScore(score) {
+  console.log(score)
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const testScoresRef = collection(db, "users", user.uid, "testScores")
+  const testTimestamp = serverTimestamp()
+  await addDoc(testScoresRef, { score: score, timestamp: testTimestamp });
+}
+
 async function saveKnowledgeLevel(level, score) {
   try {
     const auth = getAuth();
@@ -191,6 +201,7 @@ async function saveKnowledgeLevel(level, score) {
       testAverage: (score / 9) * 100,
       lastUpdated: new Date(),
     });
+    addTestScore((score / 9) * 100)
 
     return user;
   } catch (error) {
@@ -214,6 +225,9 @@ function showQuestion() {
       button.dataset.correct = answer.correct;
     }
     button.addEventListener("click", () => {
+      Array.prototype.forEach.call(document.getElementsByClassName("select"), element => {
+        element.classList.remove("select")
+      });
       button.classList.add("select")
       selectedBtn = button;
       confirmButton.style.display = "block"
@@ -245,7 +259,7 @@ function confirmAnswer() {
   }
   Array.from(answerButton.children).forEach((button) => {
     if (button.dataset.correct === "true") {
-      button.classList.add("correct", );
+      button.classList.add("correct",);
       button.classList.remove("btn-quiz", "select")
     }
     button.disabled = true;
@@ -269,7 +283,7 @@ function showScore() {
     levelString = "Expert";
     level = 2;
   }
-  questionElement.innerHTML = `You scored ${score} out of ${question.length}!,
+  questionElement.innerHTML = `You scored ${score} out of ${question.length}! <br>
   Your recommended level is ${levelString}.`;
   saveKnowledgeLevel(level, score);
   nextButton.innerHTML = "Play Again";
