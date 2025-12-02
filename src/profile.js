@@ -1,6 +1,6 @@
 import { onAuthReady } from "./authentication.js";
 import { db } from "/src/firebaseConfig.js";
-import { doc, getDoc, collection, updateDoc } from "firebase/firestore";
+import { doc, getDoc, getDocs, query, orderBy, collection, updateDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 async function saveProfileDetails(name) {
@@ -53,6 +53,7 @@ async function showDashboard() {
     const testAverage = document.getElementById("average")
     const profileImage = document.getElementById("profileImage")
     const placeholderBr = document.getElementById("placeholderBr")
+    const scoresList = document.getElementById("scores")
     const levels = ["Beginner", "Intermediate", "Expert"];
 
     onAuthReady(async (user) => {
@@ -60,15 +61,24 @@ async function showDashboard() {
             location.href = "index.html";
             return;
         }
+        const scoresCollectionRef = query(collection(db, "users", user.uid, "testScores"), orderBy("timestamp", "desc"))
         const usersCollectionRef = doc(db, "users", user.uid);
         try {
             const querySnapshot = await getDoc(usersCollectionRef);
+            const scoresQuerySnapshot = await getDocs(scoresCollectionRef);
+            scoresList.innerHTML = ""
+            scoresQuerySnapshot.forEach(async function (docSnap, index) {
+                let scoreListItem = document.createElement("li")
+                let score = docSnap.data()
+                scoreListItem.classList.add("list-group-item")
+                scoreListItem.innerHTML = `${new Date(score.timestamp.seconds * 1000).toLocaleDateString('en-US')}: ${score.score.toFixed(2)}%`
+                scoresList.appendChild(scoreListItem)
+            });
             usernameElement.textContent = querySnapshot.data().displayName;
             usernamePlaceholder.setAttribute("placeholder", querySnapshot.data().displayName)
             knowledgeLevel.textContent = `Knowledge level: ${levels[querySnapshot.data().knowledgeLevel]}`;
-            testAverage.textContent = `Average: ${String(querySnapshot.data().testAverage).padStart(2, '0')}%`;
+            testAverage.textContent = `Last test result: ${querySnapshot.data().testAverage.toFixed(2)}%`;
             profileImage.textContent = querySnapshot.data().displayName[0]
-
             usernameElement.classList.remove("placeholder")
             knowledgeLevel.classList.remove("placeholder")
             placeholderBr.remove()
