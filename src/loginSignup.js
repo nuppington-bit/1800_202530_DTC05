@@ -121,7 +121,7 @@ function initAuthUI() {
         setSubmitDisabled(signupForm, true);
         try {
             await signupUser(name, email, password);
-            location.href = 'final-knowledge-level-test.html';
+            location.href = 'knowledgeTest.html';
         } catch (err) {
             showError(authErrorMessage(err));
             console.error(err);

@@ -12,7 +12,7 @@ export default defineConfig({
                 login: resolve(__dirname, "login.html"),
                 main: resolve(__dirname, "main.html"),
                 profile: resolve(__dirname, "profile.html"),
-                knowledgelevel: resolve(__dirname, "final-knowledge-level-test.html")
+                knowledgeTest: resolve(__dirname, "knowledgeTest.html")
             }
         }
     }

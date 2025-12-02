@@ -83,7 +83,7 @@ class SiteNavbar extends HTMLElement {
                     profileItem.classList.add("nav-item");
                     knowledgeItem.classList.add("nav-item");
                     profileItem.innerHTML = `<a class="nav-link show-underline-hover" id="profileLink" href="/profile.html">Profile</a>`;
-                    knowledgeItem.innerHTML = `<a class="nav-link show-underline-hover" id="knowledgeLink" href="/final-knowledge-level-test.html">Knowledge Test</a>`;
+                    knowledgeItem.innerHTML = `<a class="nav-link show-underline-hover" id="knowledgeLink" href="/knowledgeTest.html">Knowledge Test</a>`;
                     navList.appendChild(profileItem);
                     navList.appendChild(knowledgeItem);
                 }
